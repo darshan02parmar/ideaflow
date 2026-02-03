@@ -1,0 +1,40 @@
+:root {
+  --primary: #F97316;
+  /* Align with Qupe Orange */
+  --primary-hover: #EA580C;
+  --bg-color: #000000;
+  --text-main: #FFFFFF;
+  --text-muted: #9CA3AF;
+  --card-bg: #111111;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.7);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: #000000;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
