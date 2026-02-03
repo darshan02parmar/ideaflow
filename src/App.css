@@ -562,11 +562,11 @@ body {
 }
 
 .rewrite-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(220, 199, 199, 0.05);
+  border: 1px solid rgba(230, 178, 178, 0.146);
   padding: 4px 12px;
   border-radius: 6px;
-  color: var(--qupe-gray-200);
+  color: #e5713f;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -574,7 +574,7 @@ body {
 }
 
 .rewrite-btn:hover {
-  background: rgba(249, 115, 22, 0.1);
+  background: rgba(220, 207, 198, 0.1);
   color: white;
   border-color: var(--qupe-orange);
 }
@@ -799,7 +799,7 @@ body {
 .copy-features-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #6B7280;
+  color: #e5713f;
   font-size: 0.7rem;
   padding: 4px 8px;
   border-radius: 4px;
@@ -810,7 +810,7 @@ body {
 
 .copy-features-btn:hover {
   color: white;
-  border-color: #4B5563;
+  border-color: #e5713f;
 }
 
 .features-layout {
