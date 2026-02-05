@@ -1,30 +1,89 @@
-import React from "react";
+﻿import React from "react";
 
 export default function ExamplesPage({ onSubmit }) {
-    return (
-        <div className="page-hero-wrapper">
-            <section id="examples" className="landing-section">
-                <div className="landing-container">
-                    <h2 className="landing-section-title">Expert <span className="orange-text">Examples</span></h2>
-                    <div className="examples-grid-landing">
-                        <div className="example-landing-card" onClick={() => onSubmit("Build a food delivery app")}>
-                            <div className="example-img-placeholder">🍔</div>
-                            <h3 className="example-title">Food Delivery</h3>
-                            <p className="example-desc">Logistics, rider tracking, and menus.</p>
-                        </div>
-                        <div className="example-landing-card" onClick={() => onSubmit("Create a fitness tracking app")}>
-                            <div className="example-img-placeholder">🏋️</div>
-                            <h3 className="example-title">Fitness Tracking</h3>
-                            <p className="example-desc">Workout logs, calories, and goals.</p>
-                        </div>
-                        <div className="example-landing-card" onClick={() => onSubmit("Design an AI study planner")}>
-                            <div className="example-img-placeholder">📚</div>
-                            <h3 className="example-title">AI Study Planner</h3>
-                            <p className="example-desc">Smart scheduling and goal tracking.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+  return (
+    <div className="page-hero-wrapper">
+      <section id="examples" className="landing-section-example">
+        <div className="landing-container">
+          <h2 className="landing-section-title">
+            Expert <span className="orange-text">Examples</span>
+          </h2>
+
+          <p className="landing-subtitle">
+            Click an example to instantly generate a complete product blueprint —
+            features, user flow, tech stack, and MVP roadmap.
+          </p>
+
+          {/* CORE EXAMPLES */}
+          <div className="examples-grid-landing">
+            <ExampleCard
+              emoji="🍔"
+              title="Food Delivery Platform"
+              desc="End-to-end logistics, live order tracking, payments, and scalability."
+              meta="Marketplace · Real-time · Payments"
+              onClick={() => onSubmit("Build a food delivery app")}
+            />
+
+            <ExampleCard
+              emoji="🏋️"
+              title="Fitness Tracking App"
+              desc="Personalized workouts, progress tracking, habits, and motivation loops."
+              meta="Mobile · Health · Engagement"
+              onClick={() => onSubmit("Create a fitness tracking app")}
+            />
+
+            <ExampleCard
+              emoji="📚"
+              title="AI Study Planner"
+              desc="Smart scheduling, adaptive plans, reminders, and analytics."
+              meta="AI · Productivity · Students"
+              onClick={() => onSubmit("Design an AI study planner")}
+            />
+          </div>
+
+          {/* ADVANCED EXAMPLES */}
+          <div className="examples-secondary">
+            <h3 className="examples-subheading">More advanced ideas</h3>
+
+            <div className="examples-grid-landing small">
+              <ExampleMini
+                title="B2B SaaS Dashboard"
+                onClick={() => onSubmit("Build a B2B SaaS analytics dashboard")}
+              />
+              <ExampleMini
+                title="AI Resume Analyzer"
+                onClick={() => onSubmit("Create an AI-powered resume analysis tool")}
+              />
+              <ExampleMini
+                title="Smart Parking System"
+                onClick={() => onSubmit("Design a smart parking management system")}
+              />
+            </div>
+          </div>
         </div>
-    );
+      </section>
+    </div>
+  );
+}
+
+/* -------- Components -------- */
+
+function ExampleCard({ emoji, title, desc, meta, onClick }) {
+  return (
+    <div className="example-landing-card" onClick={onClick}>
+      <div className="example-img-placeholder">{emoji}</div>
+      <h3 className="example-title">{title}</h3>
+      <p className="example-desc">{desc}</p>
+      <div className="example-meta">{meta}</div>
+      <div className="example-cta">Click to generate →</div>
+    </div>
+  );
+}
+
+function ExampleMini({ title, onClick }) {
+  return (
+    <div className="example-mini-card" onClick={onClick}>
+      {title}
+    </div>
+  );
 }

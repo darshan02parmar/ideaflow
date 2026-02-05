@@ -9,8 +9,7 @@ import Hyperspeed from "./Hyperspeed";
  */
 export default function BackgroundLayout({ children }) {
     const location = useLocation();
-    const landingRoutes = ["/", "/how-it-works", "/examples", "/why-ideaflow"];
-    const isLanding = landingRoutes.includes(location.pathname);
+    const isHome = location.pathname === "/";
 
     return (
         <div className="app-shell">
@@ -18,7 +17,7 @@ export default function BackgroundLayout({ children }) {
             <Hyperspeed />
 
             {/* Global Dimmer/Blur Overlay */}
-            <div className={`background-overlay ${!isLanding ? "active" : ""}`} />
+            <div className={`background-overlay ${!isHome ? "active" : ""}`} />
 
             {/* Main Content Area */}
             <div className="content-root">
