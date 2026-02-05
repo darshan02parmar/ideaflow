@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tambo-ai/react": "^0.73.1",
+    "html2pdf.js": "^0.14.0",
     "postprocessing": "^6.38.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

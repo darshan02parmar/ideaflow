@@ -46,8 +46,6 @@ export default function FeaturesUI({ features, aiInsight, showToast }) {
         navigator.clipboard.writeText(text);
         if (showToast) {
             showToast("📋 Features copied to clipboard!");
-        } else {
-            alert("📋 Features copied to clipboard!");
         }
     };
 

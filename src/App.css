@@ -618,7 +618,8 @@ body {
   color: #e5e7eb;
   font-weight: 500;
 }
-.value-chip:hover{
+
+.value-chip:hover {
   border-color: rgba(249, 115, 22, 0.35);
   background: #1b1b1b;
   transform: translateY(-2px);
@@ -1517,6 +1518,34 @@ body {
   animation: none;
 }
 
+/* Error Toast Styles */
+.toast.error {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(15, 11, 11, 0.98);
+}
+
+.toast.error .toast-icon {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.toast.error .toast-icon::before {
+  content: "×";
+  border: none;
+  transform: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.toast.error .toast-progress {
+  background: linear-gradient(90deg, #ef4444 0%, #f97316 100%);
+}
+
+.toast.error .toast-title {
+  color: #ffffff;
+}
+
 @keyframes toastProgress {
   from {
     transform: scaleX(1);
@@ -1539,4 +1568,72 @@ body {
   background: rgba(34, 197, 94, 0.25);
   border-color: rgba(34, 197, 94, 0.7);
   color: #eafff2;
+}
+
+/* PDF Export Visibility Fix */
+.pdf-mode {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.pdf-mode .results-container {
+  background: #ffffff !important;
+}
+
+.pdf-mode .card,
+.pdf-mode .bento-card,
+.pdf-mode .pain-point-item,
+.pdf-mode .monetization-card,
+.pdf-mode .feature-item,
+.pdf-mode .timeline-content,
+.pdf-mode .roadmap-phase,
+.pdf-mode .ai-insight-box {
+  background: #ffffff !important;
+  border-color: #cccccc !important;
+  box-shadow: none !important;
+  color: #000000 !important;
+}
+
+.pdf-mode .overview-lead,
+.pdf-mode .overview-text,
+.pdf-mode .target-users-line,
+.pdf-mode .market-signal-line,
+.pdf-mode .ai-insight-text,
+.pdf-mode .feature-text,
+.pdf-mode .pain-point-text,
+.pdf-mode .monetization-text,
+.pdf-mode .timeline-text,
+.pdf-mode .phase-title,
+.pdf-mode .tech-hint,
+.pdf-mode .bento-card-title,
+.pdf-mode .bento-card-description {
+  color: #000000 !important;
+}
+
+/* Ensure labels have high contrast */
+.pdf-mode .overview-label,
+.pdf-mode .insight-label,
+.pdf-mode .meta-label-small,
+.pdf-mode .ai-label,
+.pdf-mode .category-title,
+.pdf-mode .pain-point-index,
+.pdf-mode .monetization-badge,
+.pdf-mode .phase-badge {
+  color: #e65100 !important;
+  /* Slightly darker orange for contrast */
+  font-weight: 1000 !important;
+}
+
+.pdf-mode .value-chip {
+  background: #f3f4f6 !important;
+  border-color: #d1d5db !important;
+  color: #374151 !important;
+}
+
+.pdf-mode .story-section-header {
+  color: #000000 !important;
+}
+
+.pdf-mode .timeline-marker {
+  box-shadow: none !important;
 }
