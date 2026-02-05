@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router } from "react-router-dom";
 import { TamboProvider } from "@tambo-ai/react";
 import App from "./App";
 import IdeaOverviewUI from "./components/IdeaOverviewUI";
@@ -61,6 +62,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     apiKey={import.meta.env.VITE_TAMBO_API_KEY}
     components={components}
   >
-    <App />
+    <Router>
+      <App />
+    </Router>
   </TamboProvider>
 );

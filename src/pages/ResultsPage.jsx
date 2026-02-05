@@ -204,13 +204,6 @@ Special Requirements for "BusinessModelUI":
 
     return (
         <div className="results-page-wrapper">
-            <Hero
-                onSubmit={(p) => navigate(`/search/${encodeURIComponent(p)}`)}
-                setInput={setInput}
-                inputValue={inputValue}
-                isCompact={true}
-            />
-
             <div className="results-container" ref={resultsRef} id="results">
 
                 <div className="reset-button-container">
