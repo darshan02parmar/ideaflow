@@ -36,30 +36,30 @@ export default function StoryFlowLayout({ children }) {
                 </div>
             </section>
 
-            {/* 2. WHAT IT DOES */}
+            {/* 2. CORE CAPABILITIES */}
             <section className="story-section">
                 <header className="story-section-header">
-                    <span>🚀</span> WHAT IT DOES
+                    <span>🚀</span> CORE CAPABILITIES
                 </header>
                 <div className="card">
                     {features}
                 </div>
             </section>
 
-            {/* 3. HOW IT WORKS */}
+            {/* 3. USER JOURNEY */}
             <section className="story-section">
                 <header className="story-section-header">
-                    <span>🔁</span> HOW IT WORKS
+                    <span>🔁</span> USER JOURNEY
                 </header>
                 <div className="card">
                     {userFlow}
                 </div>
             </section>
 
-            {/* 4. HOW TO BUILD (Side by Side) */}
+            {/* 4. BUILD BLUEPRINT (Side by Side) */}
             <section className="story-section">
                 <header className="story-section-header">
-                    <span>🛠️</span> HOW TO BUILD
+                    <span>🛠️</span> BUILD BLUEPRINT
                 </header>
                 <div className="story-grid two-col">
                     <div className="card">

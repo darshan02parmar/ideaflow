@@ -20,7 +20,7 @@ function getFeatureCategory(index, total) {
     return "INTEGRATIONS";
 }
 
-export default function FeaturesUI({ features, aiInsight }) {
+export default function FeaturesUI({ features, aiInsight, showToast }) {
     if (!features || features.length === 0) {
         return (
             <div className="empty-state">
@@ -44,7 +44,11 @@ export default function FeaturesUI({ features, aiInsight }) {
     const handleCopy = () => {
         const text = features.join("\n");
         navigator.clipboard.writeText(text);
-        alert("📋 Features copied to clipboard!");
+        if (showToast) {
+            showToast("📋 Features copied to clipboard!");
+        } else {
+            alert("📋 Features copied to clipboard!");
+        }
     };
 
     return (

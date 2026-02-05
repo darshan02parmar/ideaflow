@@ -60,6 +60,20 @@ Special Requirements for "BusinessModelUI":
     }, [sendThreadMessage]);
 
     const [isRewriting, setIsRewriting] = React.useState(false);
+    const [toast, setToast] = React.useState({ open: false, message: "" });
+    const [copyActive, setCopyActive] = React.useState(false);
+    const toastTimer = useRef(null);
+
+    const showToast = (message) => {
+        setToast({ open: true, message });
+        if (toastTimer.current) {
+            clearTimeout(toastTimer.current);
+        }
+        toastTimer.current = setTimeout(() => {
+            setToast({ open: false, message: "" });
+        }, 2600);
+    };
+
 
     const handleRewriteOverview = async () => {
         if (isRewriting) return;
@@ -84,7 +98,9 @@ Special Requirements for "BusinessModelUI":
         }).join("\n\n");
 
         navigator.clipboard.writeText(textToCopy);
-        alert("📊 Plan copied to clipboard!");
+        setCopyActive(true);
+        showToast("Plan copied to clipboard!");
+        setTimeout(() => setCopyActive(false), 2000);
     };
 
     const handleReset = () => {
@@ -109,17 +125,16 @@ Special Requirements for "BusinessModelUI":
             />
 
             <div className="results-container" ref={resultsRef} id="results">
-                {/* Action Layer */}
-                <div className="action-layer">
-                    <button className="action-btn" onClick={() => alert("PDF Export coming soon!")}>📄 Export PDF</button>
-                    <button className="action-btn" onClick={handleCopy}>🔗 Copy Plan</button>
-                    <button className="action-btn" onClick={() => alert("Share link copied!")}>📤 Share</button>
-                </div>
 
                 <div className="reset-button-container">
                     <button className="reset-btn" onClick={handleReset}>
                         ✨ Start New Idea
                     </button>
+                    <div className="action-layer">
+                        <button className="action-btn" onClick={() => showToast("PDF export is coming soon.")}>📄 Export PDF</button>
+                        <button className={`action-btn ${copyActive ? "copy-success" : ""}`} onClick={handleCopy}>🔗 Copy Plan</button>
+                        <button className="action-btn" onClick={() => showToast("Share link copied.")}>📤 Share</button>
+                    </div>
                 </div>
 
                 {messages.length === 0 && (
@@ -142,6 +157,7 @@ Special Requirements for "BusinessModelUI":
                                             componentName={componentName}
                                             onRewrite={handleRewriteOverview}
                                             isRewriting={isRewriting}
+                                            showToast={showToast}
                                         />
                                     );
                                 }
@@ -151,6 +167,20 @@ Special Requirements for "BusinessModelUI":
                     </StoryFlowLayout>
                 </React.Suspense>
             </div>
+
+
+            <div className={`toast ${toast.open ? "show" : ""}`} role="status" aria-live="polite">
+                <div className="toast-icon" aria-hidden="true" />
+                <div className="toast-content">
+                    <div className="toast-title">Success!</div>
+                    <div className="toast-message">{toast.message}</div>
+                </div>
+                <button className="toast-close" onClick={() => setToast({ open: false, message: "" })}>
+                    X
+                </button>
+                <div className="toast-progress" />
+            </div>
+
         </div>
     );
 }
