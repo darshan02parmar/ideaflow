@@ -12,8 +12,23 @@ export default function Footer() {
           <p className="footer-tagline">
             Turn raw ideas into execution-ready product blueprints-fast.
           </p>
+          {/* <h4>Resources</h4> */}
+            <a
+              href="https://github.com/darshan02parmar/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a><span>&nbsp;&nbsp;</span>
+            <a
+              href="https://www.linkedin.com/in/parmar-darshan/"
+              target="_blank"
+              rel="noreferrer"
+            >
+            Linkedin
+            </a>
         </div>
-
+    
         {/* Links */}
         <div className="footer-links">
           <div className="footer-col">

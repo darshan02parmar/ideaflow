@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^3.1.1",
     "@tambo-ai/react": "^0.73.1",
     "html2pdf.js": "^0.14.0",
     "postprocessing": "^6.38.2",
