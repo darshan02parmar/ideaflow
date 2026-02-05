@@ -46,7 +46,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
         { name: "How it works", path: "/how-it-works" },
         { name: "Examples", path: "/examples" },
         { name: "Why IdeaFlow", path: "/why-ideaflow" },
-        { name: "GitHub", path: "https://github.com/darshan02parmar/ideaflow", external: true }
+        { name: "Saved Ideas", path: "/saved" },
     ];
 
     const scrollToInput = () => {
@@ -93,25 +93,13 @@ export default function Header({ onSubmit, setInput, inputValue }) {
 
                 <nav className="desktop-nav">
                     {navItems.map((item) => (
-                        item.external ? (
-                            <a
-                                key={item.name}
-                                href={item.path}
-                                className="nav-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {item.name}
-                            </a>
-                        ) : (
-                            <Link
-                                key={item.name}
-                                to={item.path}
-                                className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
-                            >
-                                {item.name}
-                            </Link>
-                        )
+                        <Link
+                            key={item.name}
+                            to={item.path}
+                            className={`nav-link ${location.pathname === item.path ? "active" : ""}`}
+                        >
+                            {item.name}
+                        </Link>
                     ))}
                 </nav>
 
@@ -130,27 +118,14 @@ export default function Header({ onSubmit, setInput, inputValue }) {
             <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
                 <div className="mobile-nav">
                     {navItems.map((item) => (
-                        item.external ? (
-                            <a
-                                key={item.name}
-                                href={item.path}
-                                className="mobile-link"
-                                onClick={() => setIsMenuOpen(false)}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                {item.name}
-                            </a>
-                        ) : (
-                            <Link
-                                key={item.name}
-                                to={item.path}
-                                className="mobile-link"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {item.name}
-                            </Link>
-                        )
+                        <Link
+                            key={item.name}
+                            to={item.path}
+                            className={`mobile-link ${location.pathname === item.path ? "active" : ""}`}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {item.name}
+                        </Link>
                     ))}
                     <button className="btn-primary-header w-full" onClick={() => { setIsMenuOpen(false); scrollToInput(); }}>Start Free</button>
                 </div>

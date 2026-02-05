@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function StoryFlowLayout({ children, onRegenerate, isRegenerating = {} }) {
+export default function StoryFlowLayout({ children, onRegenerate, isRegenerating = {}, isStatic = false }) {
     const rawItems = React.Children.toArray(children);
 
     // Map children to specific sections based on componentName prop (use latest version)
@@ -52,7 +52,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
                     <div className="header-content">
                         <span>🔁</span> USER JOURNEY
                     </div>
-                    {!isRegenerating["UserFlowUI"] && (
+                    {!isStatic && !isRegenerating["UserFlowUI"] && (
                         <button className="regen-btn" onClick={() => onRegenerate?.("UserFlowUI")}>
                             ✨ Regenerate
                         </button>
@@ -69,7 +69,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
                     <div className="header-content">
                         <span>🛠️</span> BUILD BLUEPRINT
                     </div>
-                    {!isRegenerating["TechStackUI"] && (
+                    {!isStatic && !isRegenerating["TechStackUI"] && (
                         <button className="regen-btn" onClick={() => onRegenerate?.("TechStackUI")}>
                             ✨ Regenerate
                         </button>

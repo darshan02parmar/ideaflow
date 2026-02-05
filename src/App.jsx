@@ -11,6 +11,8 @@ import ResultsPage from "./pages/ResultsPage";
 import HowItWorksPage from "./pages/HowItWorksPage";
 import ExamplesPage from "./pages/ExamplesPage";
 import WhyIdeaFlowPage from "./pages/WhyIdeaFlowPage";
+import SavedIdeasPage from "./pages/SavedIdeasPage";
+import SavedIdeaDetail from "./pages/SavedIdeaDetail";
 
 export default function App() {
   const [inputValue, setInput] = useState("");
@@ -45,6 +47,14 @@ export default function App() {
           <Route
             path="/why-ideaflow"
             element={<WhyIdeaFlowPage />}
+          />
+          <Route
+            path="/saved"
+            element={<SavedIdeasPage />}
+          />
+          <Route
+            path="/saved/:id"
+            element={<SavedIdeaDetail />}
           />
           <Route
             path="/search/:query"

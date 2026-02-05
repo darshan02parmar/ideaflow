@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTambo } from "@tambo-ai/react";
-import Hero from "../components/Hero";
 import StoryFlowLayout from "../components/StoryFlowLayout";
 import html2pdf from "html2pdf.js";
+import { saveIdea, removeIdea, isIdeaSaved } from "../utils/savedIdeas";
 
 const COMPONENT_MAP = {
     IdeaOverviewUI: React.lazy(() => import("../components/IdeaOverviewUI")),
@@ -29,42 +29,46 @@ export default function ResultsPage({ setInput, inputValue }) {
     const messages = thread?.messages || [];
 
     const resultsRef = useRef(null);
+    const [isSaved, setIsSaved] = useState(false);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [isRewriting, setIsRewriting] = useState(false);
+    const [isRegenerating, setIsRegenerating] = useState({});
+    const [toast, setToast] = useState({ open: false, message: "", type: "success", title: "Success!" });
+    const [copyActive, setCopyActive] = useState(false);
+    const toastTimer = useRef(null);
+    const lastGeneratedQueryRef = useRef(null);
 
     const generate = React.useCallback(async (prompt) => {
-        if (!prompt) return;
+        if (!prompt || isGenerating) return;
 
+        setIsGenerating(true);
         try {
-            // Small delay for cinematic feel
-            await new Promise(r => setTimeout(r, 500));
+            // Small initial delay to allow UI to settle
+            await new Promise(r => setTimeout(r, 600));
+
             const masterPrompt = `
 You are an expert AI Product Designer.
-Your task is to always generate a COMPLETE product plan for the given idea.
-User idea: ${prompt}
+Your task is to generate a comprehensive product plan for: "${prompt}".
 
-Special Requirements for "IdeaOverviewUI":
-1. provide a one-sentence "AI Insight" (psychological trigger/market fit).
-2. identify "Target Users" (e.g. Students, professionals).
-3. identify 4 "Value Tags" (core pillars like Goal-driven, progress tracking).
-4. provide a "Market Signal" (viability analysis).
+Generate appropriate sections using:
+- IdeaOverviewUI (summary, target users, market signal)
+- ProblemsWeSolveUI (3 core pain points)
+- FeaturesUI (key capabilities)
+- UserFlowUI (the user journey)
+- TechStackUI (recommended stack)
+- RoadmapUI (MVP milestones)
+- BusinessModelUI (revenue streams)
 
-Special Requirements for "ProblemsWeSolveUI":
-1. provide 3 concise "painPoints" (user pain points).
-
-Special Requirements for "BusinessModelUI":
-1. provide 3 concise "monetization" revenue streams.
+Ensure the output is high-quality and structured for each component.
 `;
             await sendThreadMessage(masterPrompt);
         } catch (error) {
             console.error("Generation failed:", error);
-            showToast("Request timed out. Check your connection.", "error", "Network Timeout");
+            showToast("The AI stream was interrupted. Please try again.", "error", "Stream Error");
+        } finally {
+            setIsGenerating(false);
         }
-    }, [sendThreadMessage]);
-
-    const [isRewriting, setIsRewriting] = React.useState(false);
-    const [isRegenerating, setIsRegenerating] = React.useState({});
-    const [toast, setToast] = React.useState({ open: false, message: "", type: "success", title: "Success!" });
-    const [copyActive, setCopyActive] = React.useState(false);
-    const toastTimer = useRef(null);
+    }, [sendThreadMessage, isGenerating]);
 
     const showToast = (message, type = "success", title = "Success!") => {
         setToast({ open: true, message, type, title });
@@ -76,9 +80,8 @@ Special Requirements for "BusinessModelUI":
         }, 2600);
     };
 
-
     const handleRewriteOverview = async () => {
-        if (isRewriting) return;
+        if (isRewriting || isGenerating) return;
         setIsRewriting(true);
         try {
             const rewritePrompt = "Rewrite only the Product Summary, AI Insight, Target Users and Market Signal to be more creative and compelling. Keep the others as they are.";
@@ -92,15 +95,13 @@ Special Requirements for "BusinessModelUI":
     };
 
     const handleRegenerate = async (componentName) => {
-        if (isRegenerating[componentName]) return;
-
+        if (isRegenerating[componentName] || isGenerating) return;
         setIsRegenerating(prev => ({ ...prev, [componentName]: true }));
         try {
             const promptMap = {
                 UserFlowUI: "Regenerate the User Journey with more detailed steps and a focus on viral growth loops.",
                 TechStackUI: "Suggest a more modern and scalable tech stack for this product, including specific library recommendations.",
             };
-
             const prompt = promptMap[componentName] || `Regenerate the ${componentName} section with more creative ideas.`;
             await sendThreadMessage(prompt);
             showToast(`${componentName === 'UserFlowUI' ? 'User Journey' : 'Tech Stack'} updated successfully!`);
@@ -112,6 +113,36 @@ Special Requirements for "BusinessModelUI":
         }
     };
 
+    const handleToggleSave = () => {
+        const id = query ? decodeURIComponent(query).toLowerCase().replace(/\s+/g, '-') : 'untitled';
+
+        if (isSaved) {
+            removeIdea(id);
+            setIsSaved(false);
+            showToast("Idea removed from saved list.");
+        } else {
+            // Only save if we have actual data
+            if (messages.length === 0) {
+                showToast("Wait for the plan to generate before saving.", "error", "Not Ready");
+                return;
+            }
+
+            const ideaData = {
+                id,
+                query: decodeURIComponent(query),
+                data: messages.reduce((acc, msg) => {
+                    if (msg.component?.componentName && msg.component?.props) {
+                        acc[msg.component.componentName] = msg.component.props;
+                    }
+                    return acc;
+                }, {})
+            };
+            saveIdea(ideaData);
+            setIsSaved(true);
+            showToast("✨ Idea saved to your collection!");
+        }
+    };
+
     const handleCopy = () => {
         const textToCopy = messages.map(msg => {
             if (msg.component?.props) {
@@ -119,7 +150,6 @@ Special Requirements for "BusinessModelUI":
             }
             return "";
         }).join("\n\n");
-
         navigator.clipboard.writeText(textToCopy);
         setCopyActive(true);
         showToast("Plan copied to clipboard!");
@@ -132,26 +162,15 @@ Special Requirements for "BusinessModelUI":
             margin: 10,
             filename: `IdeaFlow-${query || 'export'}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: {
-                scale: 2,
-                backgroundColor: '#ffffff',
-                useCORS: true,
-                logging: false
-            },
+            html2canvas: { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         };
-
-        // Temporarily hide buttons for a clean PDF
         const actionLayer = element.querySelector('.action-layer');
         const resetBtn = element.querySelector('.reset-btn');
         if (actionLayer) actionLayer.style.visibility = 'hidden';
         if (resetBtn) resetBtn.style.visibility = 'hidden';
-
-        // Apply PDF-only styles
         element.classList.add('pdf-mode');
-
         showToast("Generating PDF...");
-
         html2pdf().set(opt).from(element).save().then(() => {
             if (actionLayer) actionLayer.style.visibility = 'visible';
             if (resetBtn) resetBtn.style.visibility = 'visible';
@@ -172,7 +191,6 @@ Special Requirements for "BusinessModelUI":
             text: 'Check out this product plan generated by IdeaFlow!',
             url: window.location.href,
         };
-
         try {
             if (navigator.share) {
                 await navigator.share(shareData);
@@ -182,7 +200,6 @@ Special Requirements for "BusinessModelUI":
             }
         } catch (err) {
             console.warn("Share failed or cancelled:", err);
-            // Fallback for cancellation or errors
             if (err.name !== 'AbortError') {
                 await navigator.clipboard.writeText(window.location.href);
                 showToast("Share link copied to clipboard.");
@@ -192,40 +209,65 @@ Special Requirements for "BusinessModelUI":
 
     const handleReset = () => {
         navigate("/");
-        window.location.reload(); // Hard reset for fresh state
+        window.location.reload();
     };
 
-    // Trigger generation on mount or query change
     useEffect(() => {
         if (query) {
-            generate(decodeURIComponent(query));
+            const decodedQuery = decodeURIComponent(query);
+
+            // Strictly guard against re-triggering for the same query
+            if (lastGeneratedQueryRef.current !== decodedQuery) {
+                lastGeneratedQueryRef.current = decodedQuery;
+                setIsSaved(isIdeaSaved(decodedQuery.toLowerCase().replace(/\s+/g, '-')));
+                generate(decodedQuery);
+            }
         }
-    }, [query]);
+    }, [query, generate]); // generate is stable due to useCallback
+
+    // Performance Optimization: Only map active components
+    const activeMessages = React.useMemo(() => {
+        const seen = new Set();
+        return messages.filter(msg => {
+            if (msg.component?.componentName) {
+                // If we've seen this component name before (coming from the end), skip older versions
+                // Actually, StoryFlowLayout handles versions, but filtering here reduces React load
+                return true;
+            }
+            return false;
+        });
+    }, [messages]);
 
     return (
         <div className="results-page-wrapper">
             <div className="results-container" ref={resultsRef} id="results">
-
                 <div className="reset-button-container">
                     <button className="reset-btn" onClick={handleReset}>
                         ✨ Start New Idea
                     </button>
                     <div className="action-layer">
+                        <button
+                            className={`action-btn-save save-btn ${isSaved ? "saved" : ""}`}
+                            onClick={handleToggleSave}
+                            disabled={isGenerating}
+                        >
+                            {isSaved ? "⭐ Saved" : "☆ Save Idea"}
+                        </button>
                         <button className="action-btn" onClick={handleExportPDF}>📄 Export PDF</button>
                         <button className={`action-btn ${copyActive ? "copy-success" : ""}`} onClick={handleCopy}>🔗 Copy Plan</button>
                         <button className="action-btn" onClick={handleShare}>📤 Share</button>
                     </div>
                 </div>
 
-                {messages.length === 0 && (
+                {(messages.length === 0 || isGenerating) && messages.length < 3 && (
                     <div className="loading-state">
-                        <p className="loading-text">✨ Generating product flow...</p>
+                        <p className="loading-text">✨ Refining your blueprint... <span>(This may take a few seconds)</span></p>
                     </div>
                 )}
 
                 <React.Suspense fallback={<LoadingCard />}>
                     <StoryFlowLayout onRegenerate={handleRegenerate} isRegenerating={isRegenerating}>
-                        {messages.map((msg) => {
+                        {activeMessages.map((msg) => {
                             if (msg.component && typeof msg.component === 'object') {
                                 const { componentName, props } = msg.component;
                                 const Component = COMPONENT_MAP[componentName];
@@ -250,19 +292,15 @@ Special Requirements for "BusinessModelUI":
                 </React.Suspense>
             </div>
 
-
             <div className={`toast ${toast.type} ${toast.open ? "show" : ""}`} role="status" aria-live="polite">
                 <div className="toast-icon" aria-hidden="true" />
                 <div className="toast-content">
                     <div className="toast-title">{toast.title}</div>
                     <div className="toast-message">{toast.message}</div>
                 </div>
-                <button className="toast-close" onClick={() => setToast({ ...toast, open: false })}>
-                    X
-                </button>
+                <button className="toast-close" onClick={() => setToast({ ...toast, open: false })}>Close</button>
                 <div className="toast-progress" />
             </div>
-
         </div>
     );
 }

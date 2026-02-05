@@ -95,29 +95,37 @@ body {
 .landing-section {
   padding: 100px 20px;
   /* background: #000000; */
-    background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
+  background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
 
-  
+
 }
+
 .landing-section-how {
   padding: 100px 20px;
   /* background: #000000; */
-      background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-  
+  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+
 }
+
 .landing-section-why {
   padding: 100px 20px;
   /* background: #000000; */
-      background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-  
+  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+
 }
+
 .landing-section-example {
   padding: 100px 20px;
   /* background: #000000; */
-      background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-  
-}
+  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
 
+}
+.landing-section-saved {
+  padding: 100px 20px;
+  /* background: #000000; */
+  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+
+}
 
 .landing-section.darker {
   background: #050505;
@@ -181,7 +189,7 @@ body {
 
 .landing-section.center {
   text-align: center;
-  
+
 }
 
 .cta-heading {
@@ -197,8 +205,8 @@ body {
 
 .landing-section .comparison-list {
   margin-top: 32px;
-  
-  
+
+
 }
 
 .landing-section-title {
@@ -626,7 +634,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: var(--qupe-gray-800);
+  background: #a35007;
   transform: scale(1.05);
 }
 
@@ -754,6 +762,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  top: 30px; 
 }
 
 .action-btn:hover {
@@ -761,6 +770,27 @@ body {
   color: white;
   border-color: var(--qupe-orange);
 }
+.action-btn-save {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--qupe-gray-200);
+  border-radius: 8px;
+  color: var(--qupe-gray-600);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  right: 400px;
+  top: 20px; 
+}
+
+.action-btn-save:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: var(--qupe-orange);
+}
+
 
 .story-section {
   display: flex;
@@ -1597,6 +1627,30 @@ body {
   transform: translateY(-1px);
 }
 
+.reset-btn-saved {
+  background: #111111;
+  border: 1px solid var(--qupe-gray-200);
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  position: relative;
+  right: 400px;
+}
+
+.reset-btn-saved:hover {
+  background: #a35007;
+  color: var(--text-main);
+  border-color: #D1D5DB;
+  transform: translateY(-1px);
+}
+
 /* Problems We Solve */
 .pain-points-wrapper {
   display: flex;
@@ -2000,6 +2054,102 @@ body {
   }
 }
 
+/* Saved Ideas Page Styles */
+.saved-ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+
+.saved-card {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.saved-card:hover {
+  background: rgba(255, 115, 22, 0.05);
+  border-color: rgba(255, 115, 22, 0.3);
+  transform: translateY(-5px);
+}
+
+.card-header-small {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.delete-btn {
+  background: rgba(244, 63, 94, 0.1);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+  background: #f43f5e;
+  color: white;
+  transform: scale(1.1);
+}
+
+.saved-card .example-title {
+  margin: 12px 0 8px 0;
+  font-size: 1.4rem;
+}
+
+.saved-date {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.saved-detail-query {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card-footer-mini {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.open-link {
+  color: var(--qupe-orange);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.no-saved-ideas {
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 32px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.save-btn.saved {
+  background: rgba(249, 115, 22, 0.2);
+  border-color: var(--qupe-orange);
+  color: var(--qupe-orange);
+}
+
 @keyframes fadeInSection {
   from {
     opacity: 0;
@@ -2126,11 +2276,13 @@ body {
   font-weight: 600;
   color: #e5e7eb;
 }
+
 .user-type:hover {
   border-color: var(--qupe-orange);
   color: white;
   background: rgba(249, 115, 22, 0.1);
 }
+
 @media (max-width: 768px) {
   .comparison-grid {
     grid-template-columns: 1fr;

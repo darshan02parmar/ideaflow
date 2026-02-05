@@ -1,7 +1,7 @@
 import React from "react";
 import { z } from "zod";
 
-export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting }) {
+export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting, isStatic = false }) {
     if (!summary) {
         return (
             <div className="empty-state">
@@ -23,14 +23,16 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
         <div className="overview-container hero-result-content">
             <div className="overview-header">
                 <span className="overview-label">PRODUCT SUMMARY</span>
-                <button
-                    className="rewrite-btn"
-                    onClick={onRewrite}
-                    disabled={isRewriting}
-                    style={{ opacity: isRewriting ? 0.5 : 1, cursor: isRewriting ? 'wait' : 'pointer' }}
-                >
-                    {isRewriting ? "✨ Rewriting..." : "✨ Rewrite"}
-                </button>
+                {!isStatic && (
+                    <button
+                        className="rewrite-btn"
+                        onClick={onRewrite}
+                        disabled={isRewriting}
+                        style={{ opacity: isRewriting ? 0.5 : 1, cursor: isRewriting ? 'wait' : 'pointer' }}
+                    >
+                        {isRewriting ? "✨ Rewriting..." : "✨ Rewrite"}
+                    </button>
+                )}
             </div>
 
             <p className="overview-lead">{firstSentence}</p>
