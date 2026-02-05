@@ -3,7 +3,7 @@ import React from "react";
 export default function WhyIdeaFlowPage() {
     return (
         <div className="why-ideaflow-container">
-            <section className="landing-section">
+            <section className="landing-section-why">
                 <div className="landing-container">
                     <h1 className="landing-section-title">⭐ Why <span className="orange-text">IdeaFlow</span></h1>
                     <p className="qupe-description">A modern approach to product planning.</p>

@@ -95,16 +95,104 @@ body {
 .landing-section {
   padding: 100px 20px;
   /* background: #000000; */
+    background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
+
+  
 }
+.landing-section-how {
+  padding: 100px 20px;
+  /* background: #000000; */
+      background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+  
+}
+.landing-section-why {
+  padding: 100px 20px;
+  /* background: #000000; */
+      background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+  
+}
+
 
 .landing-section.darker {
   background: #050505;
+  background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
+
 }
 
 .landing-container {
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
+}
+
+.landing-subtitle {
+  max-width: 520px;
+  margin: 12px auto 40px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.narrow {
+  max-width: 900px;
+}
+
+.subtle-bg {
+  background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
+
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 24px;
+}
+
+.explain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.explain-card {
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.explain-card h4 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.explain-card p {
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.landing-section.center {
+  text-align: center;
+  
+}
+
+.cta-heading {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.cta-subtext {
+  color: #9ca3af;
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+.landing-section .comparison-list {
+  margin-top: 32px;
+  
+  
 }
 
 .landing-section-title {
