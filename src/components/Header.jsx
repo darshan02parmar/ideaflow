@@ -75,6 +75,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                     <LogoIcon />
                     <span className="brand-text">IdeaFlow</span>
                 </Link>
+                &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                 
                 {/* Compact search only shows on Results/Search page */}
                 {isResultsPage && (

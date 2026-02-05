@@ -1805,7 +1805,7 @@ body {
 .toast {
   position: fixed;
   right: 24px;
-  top: 24px;
+  top: 96px;
   background: rgba(15, 17, 21, 0.95);
   border: 1px solid #1f2937;
   border-radius: 14px;
@@ -1820,7 +1820,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: all 0.25s ease;
-  z-index: 999;
+  z-index: 99999;
 }
 
 .toast.show {
