@@ -61,6 +61,7 @@ Special Requirements for "BusinessModelUI":
     }, [sendThreadMessage]);
 
     const [isRewriting, setIsRewriting] = React.useState(false);
+    const [isRegenerating, setIsRegenerating] = React.useState({});
     const [toast, setToast] = React.useState({ open: false, message: "", type: "success", title: "Success!" });
     const [copyActive, setCopyActive] = React.useState(false);
     const toastTimer = useRef(null);
@@ -87,6 +88,27 @@ Special Requirements for "BusinessModelUI":
             showToast("Failed to rewrite. Please check your connection.", "error", "Network Error");
         } finally {
             setIsRewriting(false);
+        }
+    };
+
+    const handleRegenerate = async (componentName) => {
+        if (isRegenerating[componentName]) return;
+
+        setIsRegenerating(prev => ({ ...prev, [componentName]: true }));
+        try {
+            const promptMap = {
+                UserFlowUI: "Regenerate the User Journey with more detailed steps and a focus on viral growth loops.",
+                TechStackUI: "Suggest a more modern and scalable tech stack for this product, including specific library recommendations.",
+            };
+
+            const prompt = promptMap[componentName] || `Regenerate the ${componentName} section with more creative ideas.`;
+            await sendThreadMessage(prompt);
+            showToast(`${componentName === 'UserFlowUI' ? 'User Journey' : 'Tech Stack'} updated successfully!`);
+        } catch (error) {
+            console.error(`Regenerate ${componentName} failed:`, error);
+            showToast("Failed to regenerate section. Check your connection.", "error", "Network Error");
+        } finally {
+            setIsRegenerating(prev => ({ ...prev, [componentName]: false }));
         }
     };
 
@@ -209,7 +231,7 @@ Special Requirements for "BusinessModelUI":
                 )}
 
                 <React.Suspense fallback={<LoadingCard />}>
-                    <StoryFlowLayout>
+                    <StoryFlowLayout onRegenerate={handleRegenerate} isRegenerating={isRegenerating}>
                         {messages.map((msg) => {
                             if (msg.component && typeof msg.component === 'object') {
                                 const { componentName, props } = msg.component;
@@ -221,7 +243,9 @@ Special Requirements for "BusinessModelUI":
                                             {...props}
                                             componentName={componentName}
                                             onRewrite={handleRewriteOverview}
+                                            onRegenerate={() => handleRegenerate(componentName)}
                                             isRewriting={isRewriting}
+                                            isRegenerating={isRegenerating[componentName]}
                                             showToast={showToast}
                                         />
                                     );

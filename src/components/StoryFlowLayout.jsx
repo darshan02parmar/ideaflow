@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function StoryFlowLayout({ children }) {
+export default function StoryFlowLayout({ children, onRegenerate, isRegenerating = {} }) {
     const rawItems = React.Children.toArray(children);
 
     // Map children to specific sections based on componentName prop (use latest version)
@@ -49,7 +49,14 @@ export default function StoryFlowLayout({ children }) {
             {/* 3. USER JOURNEY */}
             <section className="story-section">
                 <header className="story-section-header">
-                    <span>🔁</span> USER JOURNEY
+                    <div className="header-content">
+                        <span>🔁</span> USER JOURNEY
+                    </div>
+                    {!isRegenerating["UserFlowUI"] && (
+                        <button className="regen-btn" onClick={() => onRegenerate?.("UserFlowUI")}>
+                            ✨ Regenerate
+                        </button>
+                    )}
                 </header>
                 <div className="card">
                     {userFlow}
@@ -59,11 +66,20 @@ export default function StoryFlowLayout({ children }) {
             {/* 4. BUILD BLUEPRINT (Side by Side) */}
             <section className="story-section">
                 <header className="story-section-header">
-                    <span>🛠️</span> BUILD BLUEPRINT
+                    <div className="header-content">
+                        <span>🛠️</span> BUILD BLUEPRINT
+                    </div>
+                    {!isRegenerating["TechStackUI"] && (
+                        <button className="regen-btn" onClick={() => onRegenerate?.("TechStackUI")}>
+                            ✨ Regenerate
+                        </button>
+                    )}
                 </header>
                 <div className="story-grid two-col">
                     <div className="card">
-                        <header className="card-header-small">TECH STACK</header>
+                        <header className="card-header-small">
+                            TECH STACK
+                        </header>
                         {techStack}
                     </div>
                     <div className="card">

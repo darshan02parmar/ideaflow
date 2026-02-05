@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import { z } from "zod";
 
-export default function UserFlowUI({ steps, aiInsight }) {
+export default function UserFlowUI({ steps, aiInsight, isRegenerating }) {
     const [expanded, setExpanded] = useState(false);
+
+    if (isRegenerating) {
+        return (
+            <div className="section-loading">
+                <div className="loading-dots"><span></span><span></span><span></span></div>
+                <p className="muted-loading-text">Generating user journey...</p>
+            </div>
+        );
+    }
 
     if (!steps || steps.length === 0) {
         return (

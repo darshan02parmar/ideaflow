@@ -1,7 +1,16 @@
 import React from "react";
 import { z } from "zod";
 
-export default function TechStackUI({ stack }) {
+export default function TechStackUI({ stack, isRegenerating }) {
+    if (isRegenerating) {
+        return (
+            <div className="section-loading">
+                <div className="loading-dots"><span></span><span></span><span></span></div>
+                <p className="muted-loading-text">Assembling tech blueprint...</p>
+            </div>
+        );
+    }
+
     if (!stack || stack.length === 0) {
         return (
             <div className="empty-state">
