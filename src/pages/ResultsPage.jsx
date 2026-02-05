@@ -6,10 +6,12 @@ import StoryFlowLayout from "../components/StoryFlowLayout";
 
 const COMPONENT_MAP = {
     IdeaOverviewUI: React.lazy(() => import("../components/IdeaOverviewUI")),
+    ProblemsWeSolveUI: React.lazy(() => import("../components/ProblemsWeSolveUI")),
     FeaturesUI: React.lazy(() => import("../components/FeaturesUI")),
     UserFlowUI: React.lazy(() => import("../components/UserFlowUI")),
     TechStackUI: React.lazy(() => import("../components/TechStackUI")),
-    RoadmapUI: React.lazy(() => import("../components/RoadmapUI"))
+    RoadmapUI: React.lazy(() => import("../components/RoadmapUI")),
+    BusinessModelUI: React.lazy(() => import("../components/BusinessModelUI"))
 };
 
 // Simple Fallback for Suspense
@@ -43,6 +45,12 @@ Special Requirements for "IdeaOverviewUI":
 2. identify "Target Users" (e.g. Students, professionals).
 3. identify 4 "Value Tags" (core pillars like Goal-driven, progress tracking).
 4. provide a "Market Signal" (viability analysis).
+
+Special Requirements for "ProblemsWeSolveUI":
+1. provide 3 concise "painPoints" (user pain points).
+
+Special Requirements for "BusinessModelUI":
+1. provide 3 concise "monetization" revenue streams.
 `;
             await sendThreadMessage(masterPrompt);
         } catch (error) {

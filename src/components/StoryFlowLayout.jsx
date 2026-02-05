@@ -7,10 +7,12 @@ export default function StoryFlowLayout({ children }) {
     const findComponent = (name) => rawItems.slice().reverse().find(child => child.props?.componentName === name);
 
     const overview = findComponent("IdeaOverviewUI");
+    const problems = findComponent("ProblemsWeSolveUI");
     const userFlow = findComponent("UserFlowUI");
     const features = findComponent("FeaturesUI");
     const techStack = findComponent("TechStackUI");
     const roadmap = findComponent("RoadmapUI");
+    const businessModel = findComponent("BusinessModelUI");
 
     return (
         <div className="story-flow-wrapper">
@@ -21,6 +23,16 @@ export default function StoryFlowLayout({ children }) {
                 </header>
                 <div className="card hero-result-card">
                     {overview}
+                </div>
+            </section>
+
+            {/* 2. PROBLEMS WE SOLVE */}
+            <section className="story-section">
+                <header className="story-section-header">
+                    <span>!</span> PROBLEMS WE SOLVE
+                </header>
+                <div className="card">
+                    {problems}
                 </div>
             </section>
 
@@ -60,6 +72,18 @@ export default function StoryFlowLayout({ children }) {
                     </div>
                 </div>
             </section>
+
+
+            {/* 5. BUSINESS MODEL */}
+            <section className="story-section">
+                <header className="story-section-header">
+                    <span>$</span> BUSINESS MODEL
+                </header>
+                <div className="card">
+                    {businessModel}
+                </div>
+            </section>
+
         </div>
     );
 }
