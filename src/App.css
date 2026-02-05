@@ -2326,6 +2326,28 @@ body {
   font-weight: 500;
 }
 
+.footer-socials {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-socials a {
+  color: #c8cdd4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+
+.footer-socials a:hover {
+  color: #0d3798;
+  filter: drop-shadow(0 0 6px rgba(184, 88, 21, 0.6));
+}
+
+
 .footer-links {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

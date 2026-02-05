@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
+    "@iconify/react": "^6.0.2",
     "@tambo-ai/react": "^0.73.1",
     "html2pdf.js": "^0.14.0",
     "postprocessing": "^6.38.2",

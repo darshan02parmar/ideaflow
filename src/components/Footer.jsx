@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function Footer() {
   return (
@@ -13,20 +14,24 @@ export default function Footer() {
             Turn raw ideas into execution-ready product blueprints-fast.
           </p>
           {/* <h4>Resources</h4> */}
+          <div className="footer-socials">
             <a
               href="https://github.com/darshan02parmar/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
             >
-              GitHub
-            </a><span>&nbsp;&nbsp;</span>
+              <Icon icon="mdi:github" width="35" />
+            </a>
             <a
               href="https://www.linkedin.com/in/parmar-darshan/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
             >
-            Linkedin
+              <Icon icon="mdi:linkedin" width="35" />
             </a>
+          </div>
         </div>
     
         {/* Links */}
