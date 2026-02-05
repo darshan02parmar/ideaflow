@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero({ onSubmit, setInput, inputValue }) {
+    const navigate = useNavigate();
+    const [placeholder, setPlaceholder] = useState("Describe your app idea (e.g., 'An AI fitness coach')");
+
+    const handleFocus = () => setPlaceholder("Try: 'A campus parking management system'");
+    const handleBlur = () => setPlaceholder("Describe your app idea (e.g., 'An AI fitness coach')");
+
     return (
         <div className="qupe-wrapper">
             {/* Background Orbs */}
@@ -14,6 +21,9 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                         You&apos;ve never made a product plan this{" "}
                         <span className="orange-text">fast before</span>
                     </h1>
+                    <div className="micro-proof">
+                        Generates : Product brief • User journey • Tech stack • MVP roadmap
+                    </div>
                     <p className="qupe-description">
                         Gain product clarity using our expert tools and insights to efficiently
                         manage your roadmap and enhance your startup vision.
@@ -23,17 +33,31 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                         <input
                             id="hero-search-input"
                             className="qupe-input"
-                            placeholder="Describe your app idea (e.g., 'An AI fitness coach')..."
+                            placeholder={placeholder}
                             value={inputValue}
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") onSubmit(e.target.value);
                             }}
                             onChange={(e) => setInput(e.target.value)}
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             autoFocus
                         />
                         <div className="input-hint">Press Enter to generate your roadmap</div>
                     </div>
-
+                     <br />
+                            <div className="qupe-actions">
+                        <button className="btn-primary" onClick={() => onSubmit(inputValue)}>
+                                Generate My Plan
+                        </button>
+                        <button className="btn-secondary" onClick={() => navigate("/examples")}>
+                            Explore sample ideas
+                        </button>
+                    </div>
+                    <br />
+                    
+                    <br />
+{/* 
                     <div className="qupe-examples">
                         <button className="example-btn" onClick={() => onSubmit("Build a food delivery app")}>
                             Food delivery
@@ -44,14 +68,17 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                         <button className="example-btn" onClick={() => onSubmit("Design an AI study planner")}>
                             AI study planner
                         </button>
-                    </div>
+                    </div> */}
+                    
 
-                    <div className="qupe-actions">
+                    {/* <div className="qupe-actions">
                         <button className="btn-primary" onClick={() => onSubmit(inputValue)}>
                             Get started - for free
                         </button>
-                        <button className="btn-secondary">Discover IdeaFlow</button>
-                    </div>
+                        <button className="btn-secondary" onClick={() => navigate("/examples")}>
+                            Explore sample ideas
+                        </button>
+                    </div> */}
                 </div>
             </main>
         </div>

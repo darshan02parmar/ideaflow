@@ -75,7 +75,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                     <LogoIcon />
                     <span className="brand-text">IdeaFlow</span>
                 </Link>
-
+                
                 {/* Compact search only shows on Results/Search page */}
                 {isResultsPage && (
                     <div className="compact-input-container">
@@ -90,7 +90,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                         />
                     </div>
                 )}
-
+                 &nbsp; &nbsp;
                 <nav className="desktop-nav">
                     {navItems.map((item) => (
                         <Link
@@ -102,9 +102,9 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                         </Link>
                     ))}
                 </nav>
-
+                    &nbsp; &nbsp;
                 <div className="header-actions">
-                    <button className="btn-primary-header hide-mobile" onClick={scrollToInput}>Start Free</button>
+                    <button className="btn-primary-header hide-mobile" onClick={scrollToInput}>Get started - for free</button>
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="show-mobile menu-toggle"
@@ -127,7 +127,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                             {item.name}
                         </Link>
                     ))}
-                    <button className="btn-primary-header w-full" onClick={() => { setIsMenuOpen(false); scrollToInput(); }}>Start Free</button>
+                    <button className="btn-primary-header w-full" onClick={() => { setIsMenuOpen(false); scrollToInput(); }}>Get started - for free</button>
                 </div>
             </div>
         </header>

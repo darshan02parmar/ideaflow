@@ -120,6 +120,7 @@ body {
   background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
 
 }
+
 .landing-section-saved {
   padding: 100px 20px;
   /* background: #000000; */
@@ -546,8 +547,47 @@ body {
 }
 
 .qupe-search-wrapper {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
+
+.micro-proof {
+  display: inline-flex; /* Changed to flex for better alignment */
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.03); /* Subtle glass effect */
+  border: 1px solid rgba(249, 165, 30, 0.858);
+  border-radius: 100px; /* Pill shape */
+  font-size: 0.85rem;
+  color: var(--qupe-gray-400);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px); /* Blurs background for premium feel */
+  
+}
+
+.micro-proof:hover {
+ border-color: var(--qupe-orange);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+  transform: translateY(-1px);
+}
+
+.micro-proof span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.micro-proof .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+  margin: 0 10px;
+  box-shadow: 0 0 10px var(--accent-orange); /* Glowing effect */
+}
+
 
 .qupe-input {
   width: 100%;
@@ -762,7 +802,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  top: 30px; 
+  top: 30px;
 }
 
 .action-btn:hover {
@@ -770,6 +810,7 @@ body {
   color: white;
   border-color: var(--qupe-orange);
 }
+
 .action-btn-save {
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.05);
@@ -782,7 +823,7 @@ body {
   transition: all 0.2s;
   position: relative;
   right: 400px;
-  top: 20px; 
+  top: 20px;
 }
 
 .action-btn-save:hover {
