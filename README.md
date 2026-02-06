@@ -2,10 +2,10 @@
   <img src="/public/image.png" alt="IdeaFlow Banner" width="100%" />
 </p>
 
-<h1 align="center">IdeaFlow</h1>
+<h1 align="center">🌌IdeaFlow</h1>
 
 <p align="center">
-  <b>Interface at the speed of thought.</b>
+  <b>⭐Interface at the speed of thought.</b>
 </p>
 
 IdeaFlow is an AI-powered product architecture tool that transforms erratic startup ideas into structured, professional product blueprints in seconds. It combines high-performance generative AI with a premium, SaaS-grade cinema dashboard experience.
@@ -78,3 +78,7 @@ Startups shouldn't feel like spreadsheets. They should feel like *software*. Ide
 ---
 
 *Crafted for founders who think at the speed of light.*
+
+### 👤 Author
+
+**Darshan Parmar** 
