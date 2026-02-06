@@ -1,8 +1,8 @@
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { useState } from "react";
 
-export default function RoadmapUI({ phases, isEditing = false, onUpdate }) {
+export default function RoadmapUI({ phases, isEditing = false, isImproving = false, onUpdate, onImproveAI }) {
     const [expanded, setExpanded] = useState(false);
 
     const handlePhaseChange = (index, value) => {
@@ -58,9 +58,19 @@ export default function RoadmapUI({ phases, isEditing = false, onUpdate }) {
                     </div>
                 ))}
                 {isEditing && (
-                    <button className="add-roadmap-btn" onClick={handleAddPhase}>
-                        <Plus size={16} /> Add Phase
-                    </button>
+                    <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '32px' }}>
+                        <button className="add-roadmap-btn" onClick={handleAddPhase} style={{ margin: 0 }}>
+                            <Plus size={16} /> Add Phase
+                        </button>
+                        <button
+                            className={`improve-ai-btn ${isImproving ? 'loading' : ''}`}
+                            onClick={onImproveAI}
+                            disabled={isImproving}
+                        >
+                            {isImproving ? <Loader2 className="spin" size={14} /> : <Sparkles size={14} />}
+                            {isImproving ? "Refining..." : "Improve with AI"}
+                        </button>
+                    </div>
                 )}
             </div>
             {hasMore && (

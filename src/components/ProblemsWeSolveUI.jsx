@@ -1,6 +1,6 @@
 import React from "react";
 import { z } from "zod";
-import { Plus, X } from "lucide-react";
+import { Plus, X, Sparkles, Loader2 } from "lucide-react";
 
 const defaultPainPoints = [
   "Hard to decide what to eat",
@@ -8,7 +8,7 @@ const defaultPainPoints = [
   "Hidden delivery fees"
 ];
 
-export default function ProblemsWeSolveUI({ painPoints, isEditing = false, onUpdate }) {
+export default function ProblemsWeSolveUI({ painPoints, isEditing = false, isImproving = false, onUpdate, onImproveAI }) {
   const points =
     painPoints && painPoints.length > 0 ? painPoints : defaultPainPoints;
 
@@ -29,7 +29,19 @@ export default function ProblemsWeSolveUI({ painPoints, isEditing = false, onUpd
   return (
     <div className={`pain-points-wrapper ${isEditing ? 'editing-mode' : ''}`}>
       <div className="pain-points-header">
-        <span className="card-header-small">USER PAIN POINTS</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '12px' }}>
+          <span className="card-header-small">USER PAIN POINTS</span>
+          {isEditing && (
+            <button
+              className={`improve-ai-btn small ${isImproving ? 'loading' : ''}`}
+              onClick={onImproveAI}
+              disabled={isImproving}
+            >
+              {isImproving ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />}
+              {isImproving ? "Refining..." : "Improve with AI"}
+            </button>
+          )}
+        </div>
         <p className="section-intro">
           These are the core frustrations the product is designed to remove.
         </p>

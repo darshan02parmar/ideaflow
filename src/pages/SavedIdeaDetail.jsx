@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTambo } from "@tambo-ai/react";
 import StoryFlowLayout from "../components/StoryFlowLayout";
 import { getSavedIdeaById, updateIdeaTitle, updateIdeaData } from "../utils/savedIdeas";
-import { Edit2, Check, X } from "lucide-react";
-
+import { Edit2, Check, X, Sparkles } from "lucide-react";
 const COMPONENT_MAP = {
     IdeaOverviewUI: React.lazy(() => import("../components/IdeaOverviewUI")),
     ProblemsWeSolveUI: React.lazy(() => import("../components/ProblemsWeSolveUI")),
@@ -23,12 +23,19 @@ const LoadingCard = () => (
 export default function SavedIdeaDetail() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { sendThreadMessage, thread } = useTambo();
+    const messages = thread?.messages || [];
+
     const [idea, setIdea] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [isEditingPage, setIsEditingPage] = useState(false);
+    const [isImproving, setIsImproving] = useState({});
     const [editValue, setEditValue] = useState("");
     const [toast, setToast] = useState({ open: false, message: "", type: "success", title: "Success!" });
     const toastTimer = useRef(null);
+
+    // Track which section is being improved to handle streaming updates
+    const activeSectionRef = useRef(null);
 
     const showToast = (message, type = "success", title = "Success!") => {
         setToast({ open: true, message, type, title });
@@ -39,6 +46,17 @@ export default function SavedIdeaDetail() {
             setToast({ open: false, message: message, type: type, title: title });
         }, 2600);
     };
+
+    // Effect to handle streaming updates from AI for the active section
+    useEffect(() => {
+        if (!activeSectionRef.current) return;
+
+        const lastMessage = messages[messages.length - 1];
+        if (lastMessage?.role === "assistant" && lastMessage.components?.[activeSectionRef.current]) {
+            const componentData = lastMessage.components[activeSectionRef.current];
+            handleSectionUpdate(activeSectionRef.current, componentData);
+        }
+    }, [messages]);
 
     useEffect(() => {
         const savedIdea = getSavedIdeaById(id);
@@ -70,6 +88,33 @@ export default function SavedIdeaDetail() {
         };
         updateIdeaData(id, updatedIdeaData);
         setIdea({ ...idea, data: updatedIdeaData });
+    };
+
+    const handleImproveSection = async (sectionName) => {
+        if (isImproving[sectionName]) return;
+
+        setIsImproving(prev => ({ ...prev, [sectionName]: true }));
+        activeSectionRef.current = sectionName;
+
+        try {
+            const sectionData = idea.data[sectionName];
+            const prompt = `
+Refine and improve the following "${sectionName}" section for the product "${idea.query}". 
+The current content is: ${JSON.stringify(sectionData)}.
+
+Make it more professional, compelling, and consistent with the overall product vision. 
+Return ONLY the updated JSON data for the ${sectionName} component.
+`;
+            await sendThreadMessage(prompt);
+            showToast(`${sectionName} improved with AI!`, "success", "AI Refined");
+        } catch (error) {
+            console.error("AI Improvement failed:", error);
+            showToast("AI refinement failed. Please try again.", "error", "AI Error");
+        } finally {
+            setIsImproving(prev => ({ ...prev, [sectionName]: false }));
+            // We keep activeSectionRef.current for a bit to ensure the last stream chunk is caught
+            setTimeout(() => { if (activeSectionRef.current === sectionName) activeSectionRef.current = null; }, 1000);
+        }
     };
 
     const handleToggleEditPage = () => {
@@ -166,7 +211,9 @@ export default function SavedIdeaDetail() {
                                         componentName={name}
                                         isStatic={true}
                                         isEditing={isEditingPage}
+                                        isImproving={isImproving[name]}
                                         onUpdate={(newData) => handleSectionUpdate(name, newData)}
+                                        onImproveAI={() => handleImproveSection(name)}
                                         showToast={showToast}
                                     />
                                 );

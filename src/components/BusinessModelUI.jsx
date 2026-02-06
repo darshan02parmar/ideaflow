@@ -7,9 +7,9 @@ const defaultMonetization = [
   "Sponsored restaurant listings"
 ];
 
-import { Plus, X } from "lucide-react";
+import { Plus, X, Sparkles, Loader2 } from "lucide-react";
 
-export default function BusinessModelUI({ monetization, isEditing = false, onUpdate }) {
+export default function BusinessModelUI({ monetization, isEditing = false, isImproving = false, onUpdate, onImproveAI }) {
   const streams =
     monetization && monetization.length > 0 ? monetization : defaultMonetization;
 
@@ -29,11 +29,23 @@ export default function BusinessModelUI({ monetization, isEditing = false, onUpd
 
   return (
     <div className={`monetization-wrapper ${isEditing ? 'editing-mode' : ''}`}>
-      <div className="monetization-header">
-        <span className="card-header-small">MONETIZATION MODEL</span>
-        <p className="section-intro">
-          Clear revenue paths that make the product feel investor-ready.
-        </p>
+      <div className="monetization-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', marginBottom: '16px' }}>
+        <div>
+          <span className="card-header-small">MONETIZATION MODEL</span>
+          <p className="section-intro" style={{ margin: 0 }}>
+            Clear revenue paths that make the product feel investor-ready.
+          </p>
+        </div>
+        {isEditing && (
+          <button
+            className={`improve-ai-btn small ${isImproving ? 'loading' : ''}`}
+            onClick={onImproveAI}
+            disabled={isImproving}
+          >
+            {isImproving ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />}
+            {isImproving ? "Refining..." : "Improve with AI"}
+          </button>
+        )}
       </div>
       <div className="monetization-grid">
         {streams.map((stream, index) => (

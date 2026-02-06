@@ -2822,3 +2822,62 @@ body {
   background: #ef4444;
   color: white;
 }
+
+/* Improve with AI Button Styles */
+.improve-ai-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--qupe-orange) 0%, #ffb800 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3);
+  width: fit-content;
+}
+
+.improve-ai-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4);
+}
+
+.improve-ai-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.improve-ai-btn.small {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+}
+
+.improve-ai-btn.loading {
+  background: #2a2a2a;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: wait;
+  box-shadow: none;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.edit-actions-row {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-end;
+}

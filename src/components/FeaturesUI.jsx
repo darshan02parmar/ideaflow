@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import { z } from "zod";
+import { Sparkles, Loader2 } from "lucide-react";
 
 function getFeatureIcon(text) {
     const lower = text.toLowerCase();
@@ -20,7 +21,7 @@ function getFeatureCategory(index, total) {
     return "INTEGRATIONS";
 }
 
-export default function FeaturesUI({ features, aiInsight, showToast, isEditing = false, onUpdate }) {
+export default function FeaturesUI({ features, aiInsight, showToast, isEditing = false,isImproving = false,onUpdate, onImproveAI  }) {
     if (!features || features.length === 0) {
         return (
             <div className="empty-state">
@@ -57,11 +58,22 @@ export default function FeaturesUI({ features, aiInsight, showToast, isEditing =
 
     return (
         <div className={`features-wrapper ${isEditing ? 'editing-mode' : ''}`}>
-            <div className="features-header-row">
+            <div className="features-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <p className="features-ai-summary">
                     <span className="ai-label">AI Summary:</span> This product focuses on personalization, habit formation, and seamless integration.
                 </p>
-                {!isEditing && <button className="copy-features-btn" onClick={handleCopy}>Copy list</button>}
+                {isEditing ? (
+                    <button
+                        className={`improve-ai-btn small ${isImproving ? 'loading' : ''}`}
+                        onClick={onImproveAI}
+                        disabled={isImproving}
+                    >
+                        {isImproving ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />}
+                        {isImproving ? "Refining..." : "Improve with AI"}
+                    </button>
+                ) : (
+                    <button className="copy-features-btn" onClick={handleCopy}>Copy list</button>
+                )}
             </div>
 
             <div className="features-layout">

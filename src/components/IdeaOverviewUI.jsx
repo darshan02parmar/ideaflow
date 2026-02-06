@@ -1,7 +1,11 @@
 import React from "react";
 import { z } from "zod";
+import { Sparkles, Loader2 } from "lucide-react";
 
-export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting, isStatic = false, isEditing = false, onUpdate }) {
+export default function IdeaOverviewUI({
+    summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting,
+    isStatic = false, isEditing = false, isImproving = false, onUpdate, onImproveAI
+}) {
     if (!summary && !isEditing) {
         return (
             <div className="empty-state">
@@ -41,6 +45,16 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
 
             {isEditing ? (
                 <div className="edit-fields-group">
+                    <div className="edit-actions-row">
+                        <button
+                            className={`improve-ai-btn ${isImproving ? 'loading' : ''}`}
+                            onClick={onImproveAI}
+                            disabled={isImproving}
+                        >
+                            {isImproving ? <Loader2 className="spin" size={14} /> : <Sparkles size={14} />}
+                            {isImproving ? "Refining..." : "Improve with AI"}
+                        </button>
+                    </div>
                     <textarea
                         className="editable-textarea summary-edit"
                         value={summary}

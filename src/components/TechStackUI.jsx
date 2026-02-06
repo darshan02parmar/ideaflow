@@ -1,8 +1,8 @@
 import React from "react";
 import { z } from "zod";
-import { Plus, X } from "lucide-react";
+import { Plus, X, Sparkles, Loader2 } from "lucide-react";
 
-export default function TechStackUI({ stack, isRegenerating, isEditing = false, onUpdate }) {
+export default function TechStackUI({ stack, isRegenerating, isEditing = false, isImproving = false, onUpdate, onImproveAI }) {
     const handleTechChange = (index, value) => {
         const newStack = [...stack];
         newStack[index] = value;
@@ -56,9 +56,19 @@ export default function TechStackUI({ stack, isRegenerating, isEditing = false, 
                     </span>
                 ))}
                 {isEditing && (
-                    <button className="add-tech-btn" onClick={handleAddTech}>
-                        <Plus size={14} /> Add Tech
-                    </button>
+                    <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                        <button className="add-tech-btn" onClick={handleAddTech} style={{ margin: 0 }}>
+                            <Plus size={14} /> Add Tech
+                        </button>
+                        <button
+                            className={`improve-ai-btn small ${isImproving ? 'loading' : ''}`}
+                            onClick={onImproveAI}
+                            disabled={isImproving}
+                        >
+                            {isImproving ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />}
+                            {isImproving ? "Refining..." : "Improve with AI"}
+                        </button>
+                    </div>
                 )}
             </div>
             {!isEditing && (

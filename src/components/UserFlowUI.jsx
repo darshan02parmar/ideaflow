@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { z } from "zod";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Sparkles, Loader2 } from "lucide-react";
 
-export default function UserFlowUI({ steps, aiInsight, isRegenerating, isEditing = false, onUpdate }) {
+export default function UserFlowUI({ steps, aiInsight, isRegenerating, isEditing = false, isImproving = false, onUpdate, onImproveAI }) {
     const [expanded, setExpanded] = useState(false);
 
     const handleStepChange = (index, value) => {
@@ -65,8 +65,18 @@ export default function UserFlowUI({ steps, aiInsight, isRegenerating, isEditing
 
     return (
         <div className={`user-flow-wrapper ${isEditing ? 'editing-mode' : ''}`}>
-            <div className="section-intro">
+            <div className="section-intro" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 This is the typical end-to-end experience for a user.
+                {isEditing && (
+                    <button
+                        className={`improve-ai-btn small ${isImproving ? 'loading' : ''}`}
+                        onClick={onImproveAI}
+                        disabled={isImproving}
+                    >
+                        {isImproving ? <Loader2 className="spin" size={12} /> : <Sparkles size={12} />}
+                        {isImproving ? "Refining..." : "Improve with AI"}
+                    </button>
+                )}
             </div>
 
             <div className="phases-container">
