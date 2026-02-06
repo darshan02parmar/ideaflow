@@ -23,9 +23,9 @@ export default function WhyIdeaFlowPage() {
                             <h3 className="card-title">⚡ IdeaFlow Way</h3>
                             <p className="card-subtitle">Structured thinking, instantly.</p>
                             <ul className="comparison-list">
-                                <li>✅ One input → complete blueprint</li>
-                                <li>✅ Opinionated structure (not random text)</li>
-                                <li>✅ Built for iteration, not perfection</li>
+                                <li>✅ One input → a complete, execution-ready blueprint</li>
+                                <li>✅ Opinionated structure — not random AI text</li>
+                                <li>✅ Built for iteration, not overthinking</li>
                                 <li>✅ Actionable output in seconds</li>
                             </ul>
                         </div>

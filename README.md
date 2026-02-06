@@ -2,42 +2,44 @@
 
 **Interface at the speed of thought.**
 
-IdeaFlow is an AI-powered product architecture tool that transforms erratic startup ideas into structured, professional product briefs in seconds. It combines generative AI with a premium, cinema-grade dashboard experience.
+IdeaFlow is an AI-powered product architecture tool that transforms erratic startup ideas into structured, professional product blueprints in seconds. It combines high-performance generative AI with a premium, SaaS-grade cinema dashboard experience.
 
 ![IdeaFlow](https://media.licdn.com/dms/image/v2/D562DAQFvQ9ZgC8Rk6g/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733221415951?e=1738861200&v=beta&t=lK4yqZsqq3q8jE4qgW9zX9kXyR7g8wXyR7g8wXyR7g8w)
 
 ## 🚀 Key Features
 
 ### 🧠 Generative Product Intelligence
-- **Deep Insight**: Goes beyond simple text generation to provide "AI Insights"—psychological and market-fit reasoning for every idea.
-- **Strategic Briefs**: Auto-generates high-level summaries, target user personas, and core value pillars.
-- **Smart Rewrite**: Refine your product vision in real-time without losing context.
+- **Streaming Blueprints**: Watch your product plan unfold in real-time with an immersive typing effect.
+- **Section Regeneration**: Not feeling a specific feature? Hit "Regenerate" to pivot specific sections like Tech Stack or User Flows without losing the whole plan.
+- **Product Architecture**: Generates comprehensive Product Briefs, User Journeys, Tech Stacks, MVP Roadmaps, and Business Models.
 
-### 🗺️ Dynamic Journey Mapping
-- **Phased User Flows**: Visualizes user journeys in logical phases (Onboarding, Core, Retention) with estimated time-to-value.
-- **Interactive Simulation**: "Simulate" steps with tactile hover effects and preview triggers.
-- **Architectural Routing**: Seamlessly transitions from Hero search to deep-dive Results without breaking the immersive background.
+### 💾 Blueprint Management
+- **Local Persistence**: Save your favorite blueprints locally with zero-backend overhead.
+- **Blueprint Gallery**: Access all your saved ideas in a dedicated, high-performance gallery view.
+- **PDF Export**: Generate professional PDF reports of your product plans for instant sharing with stakeholders.
 
-### 🏗️ Intelligent Architecture
-- **Categorized Features**: Automatically sorts features into Core, Engagement, and Integration buckets.
-- **Semantic Icons**: Detects keywords (AI, Analytics, Social) to assign meaningful iconography.
-- **Tech Stack Recommendations**: Suggests the optimal modern stack for your specific idea.
-
-### 🎨 Premium "Qupe" Design System
-- **Hyperspeed Background**: A persistent, WebGL-powered starfield that creates a sense of depth and momentum.
-- **Glassmorphism**: Content floats on blurred, semi-transparent cards for a futuristic feel.
-- **Micro-Interactions**: Every element—from tags to timeline markers—responds to user interaction.
+### 🎨 Premium UI/UX (The Qupe Design System)
+- **Fluid Hyperspeed**: A persistent WebGL-powered starfield background that adapts as you navigate.
+- **Pro Section Headers**: Visual consistency using Lucide-react icons, signature gradient dividers, and high-contrast typography.
+- **Dynamic Guidance**: Interactive search inputs with context-aware placeholders and micro-proof lines for immediate value clarity.
+- **Animated Micros**: Tactile hover effects, logo glows, and smooth page transitions that make the app feel alive.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, Vite
-- **AI Integration**: @tambo-ai/react SDK
-- **Visuals**: Three.js, Postprocessing
-- **Routing**: React Router DOM v7
-- **Styling**: Vanilla CSS (Performance focused)
-- **Validation**: Zod (Schema enforcement)
+- **Core**: [React 19](https://react.dev/), [Vite](https://vitejs.dev/)
+- **AI Backend**: [@tambo-ai/react](https://tambo.ai/) (Real-time streaming interface)
+- **Visuals**: [Three.js](https://threejs.org/), [Lucide React](https://lucide.dev/)
+- **Navigation**: [React Router DOM v7](https://reactrouter.com/)
+- **Utilities**: [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/), [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 ## ⚡ Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- A Tambo AI API Key
+
+### Installation
 
 1.  **Clone the repository**
     ```bash
@@ -50,21 +52,21 @@ IdeaFlow is an AI-powered product architecture tool that transforms erratic star
     npm install
     ```
 
-3.  **Set up Environment**
-    Create a `.env.local` file and add your Tambo API key:
+3.  **Configure Environment**
+    Create a `.env` file in the root directory:
     ```env
     VITE_TAMBO_API_KEY=your_api_key_here
     ```
 
-4.  **Run the development server**
+4.  **Launch Dashboard**
     ```bash
     npm run dev
     ```
 
 ## 🌌 The "IdeaFlow" Philosophy
 
-Startups shouldn't feel like spreadsheets. They should feel like *software*. IdeaFlow is designed to make the planning phase as exciting as the building phase.
+Startups shouldn't feel like spreadsheets. They should feel like *software*. IdeaFlow is designed to make the messy planning phase feel as fast and exciting as the actual building process.
 
 ---
 
-*Generated with IdeaFlow Core.*
+*Crafted for founders who think at the speed of light.*
