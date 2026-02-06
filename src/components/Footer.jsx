@@ -33,7 +33,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-    
+
         {/* Links */}
         <div className="footer-links">
           <div className="footer-col">
@@ -53,7 +53,7 @@ export default function Footer() {
             >
               GitHub
             </a>
-            <Link to="/">Start Free</Link>
+            <Link to="/saved">My Saved Blueprints</Link>
           </div>
 
           <div className="footer-col">
