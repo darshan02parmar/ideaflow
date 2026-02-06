@@ -45,19 +45,19 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                         />
                         <div className="input-hint">Press Enter to generate your roadmap</div>
                     </div>
-                     <br />
-                            <div className="qupe-actions">
+                    <br />
+                    <div className="qupe-actions">
                         <button className="btn-primary" onClick={() => onSubmit(inputValue)}>
-                                Generate My Plan
+                            Generate My Plan
                         </button>
                         <button className="btn-secondary" onClick={() => navigate("/examples")}>
                             Explore sample ideas
                         </button>
                     </div>
                     <br />
-                    
+
                     <br />
-{/* 
+                    {/* 
                     <div className="qupe-examples">
                         <button className="example-btn" onClick={() => onSubmit("Build a food delivery app")}>
                             Food delivery
@@ -69,7 +69,7 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                             AI study planner
                         </button>
                     </div> */}
-                    
+
 
                     {/* <div className="qupe-actions">
                         <button className="btn-primary" onClick={() => onSubmit(inputValue)}>

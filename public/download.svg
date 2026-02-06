@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="1" y="1" width="30" height="30" rx="8" fill="#0B0B0F" stroke="#FF8A00" stroke-width="1"></rect>
+
+  <!-- IdeaFlow Mark -->
+  <path d="M11 9V23M11 16H18.5C20.433 16 22 14.433 22 12.5C22 10.567 20.433 9 18.5 9H11M11 23H22" stroke="white" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

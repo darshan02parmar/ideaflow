@@ -8,12 +8,25 @@ const LogoIcon = () => (
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        className="logo-svg"
     >
-        <rect width="32" height="32" rx="8" fill="#F97316" />
+        {/* Background */}
+        <rect
+            x="1"
+            y="1"
+            width="30"
+            height="30"
+            rx="8"
+            fill="#0B0B0F"
+            stroke="#FF8A00"
+            strokeWidth="1"
+        />
+
+        {/* IdeaFlow Mark */}
         <path
-            d="M10 10V22M10 16H18C20.2091 16 22 14.2091 22 12C22 9.79086 20.2091 8 18 8H10M10 22L22 22"
+            d="M11 9V23M11 16H18.5C20.433 16 22 14.433 22 12.5C22 10.567 20.433 9 18.5 9H11M11 23H22"
             stroke="white"
-            strokeWidth="2.5"
+            strokeWidth="2.3"
             strokeLinecap="round"
             strokeLinejoin="round"
         />
@@ -71,12 +84,12 @@ export default function Header({ onSubmit, setInput, inputValue }) {
     return (
         <header className={`qupe-header ${!isHome ? "compact" : ""}`}>
             <div className="header-container">
-                <Link className="brand" to="/">
+                <Link className="brand logo" to="/">
                     <LogoIcon />
                     <span className="brand-text">IdeaFlow</span>
                 </Link>
                 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                
+
                 {/* Compact search only shows on Results/Search page */}
                 {isResultsPage && (
                     <div className="compact-input-container">
@@ -91,7 +104,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                         />
                     </div>
                 )}
-                 &nbsp; &nbsp;
+                &nbsp; &nbsp;
                 <nav className="desktop-nav">
                     {navItems.map((item) => (
                         <Link
@@ -103,7 +116,7 @@ export default function Header({ onSubmit, setInput, inputValue }) {
                         </Link>
                     ))}
                 </nav>
-                    &nbsp; &nbsp;
+                &nbsp; &nbsp;
                 <div className="header-actions">
                     <button className="btn-primary-header hide-mobile" onClick={scrollToInput}>Get started - for free</button>
                     <button

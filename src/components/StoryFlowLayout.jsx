@@ -1,4 +1,15 @@
 import React from "react";
+import {
+    FileText,
+    AlertTriangle,
+    Layers,
+    Route,
+    Wrench,
+    TrendingUp,
+    Boxes,
+    Flag
+} from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
 
 export default function StoryFlowLayout({ children, onRegenerate, isRegenerating = {}, isStatic = false }) {
     const rawItems = React.Children.toArray(children);
@@ -18,9 +29,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
         <div className="story-flow-wrapper">
             {/* 1. PRODUCT BRIEF (Main Hero) */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <span>💡</span> PRODUCT BRIEF
-                </header>
+                <SectionHeader icon={FileText} title="Product Brief" />
                 <div className="card hero-result-card">
                     {overview}
                 </div>
@@ -28,9 +37,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
 
             {/* 2. PROBLEMS WE SOLVE */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <span>!</span> PROBLEMS WE SOLVE
-                </header>
+                <SectionHeader icon={AlertTriangle} title="Problems We Solve" />
                 <div className="card">
                     {problems}
                 </div>
@@ -38,9 +45,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
 
             {/* 2. CORE CAPABILITIES */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <span>🚀</span> CORE CAPABILITIES
-                </header>
+                <SectionHeader icon={Layers} title="Core Capabilities" />
                 <div className="card">
                     {features}
                 </div>
@@ -48,16 +53,14 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
 
             {/* 3. USER JOURNEY */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <div className="header-content">
-                        <span>🔁</span> USER JOURNEY
-                    </div>
+                <div className="header-with-action">
+                    <SectionHeader icon={Route} title="User Journey" />
                     {!isStatic && !isRegenerating["UserFlowUI"] && (
                         <button className="regen-btn" onClick={() => onRegenerate?.("UserFlowUI")}>
                             ✨ Regenerate
                         </button>
                     )}
-                </header>
+                </div>
                 <div className="card">
                     {userFlow}
                 </div>
@@ -65,25 +68,31 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
 
             {/* 4. BUILD BLUEPRINT (Side by Side) */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <div className="header-content">
-                        <span>🛠️</span> BUILD BLUEPRINT
-                    </div>
+                <div className="header-with-action">
+                    <SectionHeader icon={Wrench} title="Build Blueprint" />
                     {!isStatic && !isRegenerating["TechStackUI"] && (
                         <button className="regen-btn" onClick={() => onRegenerate?.("TechStackUI")}>
                             ✨ Regenerate
                         </button>
                     )}
-                </header>
+                </div>
                 <div className="story-grid two-col">
                     <div className="card">
                         <header className="card-header-small">
-                            TECH STACK
+                            <div className="small-header-content">
+                                <Boxes size={14} className="header-small-icon" />
+                                TECH STACK
+                            </div>
                         </header>
                         {techStack}
                     </div>
                     <div className="card">
-                        <header className="card-header-small">MVP ROADMAP</header>
+                        <header className="card-header-small">
+                            <div className="small-header-content">
+                                <Flag size={14} className="header-small-icon" />
+                                MVP ROADMAP
+                            </div>
+                        </header>
                         {roadmap}
                     </div>
                 </div>
@@ -92,9 +101,7 @@ export default function StoryFlowLayout({ children, onRegenerate, isRegenerating
 
             {/* 5. BUSINESS MODEL */}
             <section className="story-section">
-                <header className="story-section-header">
-                    <span>$</span> BUSINESS MODEL
-                </header>
+                <SectionHeader icon={TrendingUp} title="Business Model" />
                 <div className="card">
                     {businessModel}
                 </div>

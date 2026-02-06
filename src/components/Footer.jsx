@@ -9,7 +9,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="footer-brand">
-          <div className="footer-logo">✨ IdeaFlow</div>
+          <div className="footer-logo"> IdeaFlow</div>
           <p className="footer-tagline">
             Turn raw ideas into execution-ready product blueprints-fast.
           </p>
