@@ -1,10 +1,15 @@
-# IdeaFlow 🌌
+<p align="center">
+  <img src="image.png" alt="IdeaFlow Banner" width="100%" />
+</p>
 
-**Interface at the speed of thought.**
+<h1 align="center">IdeaFlow</h1>
+
+<p align="center">
+  <b>Interface at the speed of thought.</b>
+</p>
 
 IdeaFlow is an AI-powered product architecture tool that transforms erratic startup ideas into structured, professional product blueprints in seconds. It combines high-performance generative AI with a premium, SaaS-grade cinema dashboard experience.
 
-![IdeaFlow](https://media.licdn.com/dms/image/v2/D562DAQFvQ9ZgC8Rk6g/profile-treasury-image-shrink_1280_1280/profile-treasury-image-shrink_1280_1280/0/1733221415951?e=1738861200&v=beta&t=lK4yqZsqq3q8jE4qgW9zX9kXyR7g8wXyR7g8wXyR7g8w)
 
 ## 🚀 Key Features
 
