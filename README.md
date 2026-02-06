@@ -17,6 +17,8 @@ IdeaFlow is an AI-powered product architecture tool that transforms erratic star
 - **Local Persistence**: Save your favorite blueprints locally with zero-backend overhead.
 - **Blueprint Gallery**: Access all your saved ideas in a dedicated, high-performance gallery view.
 - **PDF Export**: Generate professional PDF reports of your product plans for instant sharing with stakeholders.
+- **Editable Blueprints**: Saved plans are fully editable, allowing founders to manually refine AI output into their own execution-ready strategy.
+
 
 ### 🎨 Premium UI/UX (The Qupe Design System)
 - **Fluid Hyperspeed**: A persistent WebGL-powered starfield background that adapts as you navigate.
