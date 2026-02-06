@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="image.png" alt="IdeaFlow Banner" width="100%" />
+  <img src="/public/image.png" alt="IdeaFlow Banner" width="100%" />
 </p>
 
 <h1 align="center">IdeaFlow</h1>
@@ -44,7 +44,7 @@ IdeaFlow is an AI-powered product architecture tool that transforms erratic star
 
 ### Prerequisites
 
-- Node.js (v18+)
+- React.js (v18+)
 - A Tambo AI API Key
 
 ### Installation
