@@ -100,42 +100,32 @@ body {
 
 /* Landing Page Revamp Styles */
 .landing-section {
-  padding: 120px 24px;
+  padding: 60px 24px;
   background: radial-gradient(80% 80% at 50% 0%, rgba(63, 51, 34, 0.61), transparent 60%);
 }
 
 @media (max-width: 1440px) {
   .landing-section {
-    padding: 100px 24px;
+    padding: 40px 24px;
   }
 }
 
-.landing-section-how {
-  padding: 100px 20px;
-  /* background: #000000; */
-  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-
-}
-
-.landing-section-why {
-  padding: 100px 20px;
-  /* background: #000000; */
-  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-
-}
-
-.landing-section-example {
-  padding: 100px 20px;
-  /* background: #000000; */
-  background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
-
-}
-
+.landing-section-how,
+.landing-section-why,
+.landing-section-example,
 .landing-section-saved {
-  padding: 100px 20px;
-  /* background: #000000; */
+  padding: 60px 24px;
   background: radial-gradient(80% 80% at 50% 0%, rgb(255 165 61 / 61%), transparent 60%);
+}
 
+@media (max-width: 1440px) {
+
+  .landing-section-how,
+  .landing-section-why,
+  .landing-section-example,
+  .landing-section-saved {
+    padding: 40px 24px;
+  }
 }
 
 .landing-section.darker {
@@ -152,9 +142,10 @@ body {
 
 .landing-subtitle {
   max-width: 560px;
-  margin: 12px auto 40px;
+  margin: 12px auto 32px;
   text-align: center;
   color: #9ca3af;
+  font-size: 0.9375rem;
 }
 
 .narrow {
@@ -221,23 +212,23 @@ body {
 }
 
 .landing-section-title {
-  font-size: 2.8rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 800;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   letter-spacing: -0.02em;
 }
 
 .steps-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px;
 }
 
 .step-card {
-  padding: 40px;
+  padding: 30px 24px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
+  border-radius: 20px;
   text-align: center;
   transition: transform 0.3s ease;
 }
@@ -270,19 +261,20 @@ body {
 .step-text {
   color: #d3a72b;
   line-height: 1.6;
+  font-size: 0.9rem;
 }
 
 .examples-grid-landing {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px;
 }
 
 .example-landing-card {
-  padding: 30px;
+  padding: 24px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  border-radius: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -511,42 +503,42 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 24px;
+  padding: 60px 24px;
   position: relative;
   z-index: 10;
 }
 
 @media (max-width: 1440px) {
   .qupe-main {
-    padding: 100px 24px;
+    padding: 40px 24px;
   }
 }
 
 .hero-content {
-  max-width: 56rem;
+  max-width: 42rem;
   text-align: center;
 }
 
 .qupe-badge {
   display: inline-block;
-  padding: 6px 16px;
+  padding: 4px 12px;
   background: var(--qupe-orange-light);
   color: var(--qupe-orange);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 9999px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .qupe-title {
-  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-size: clamp(1.8rem, 3.8vw, 2.8rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #FFFFFF;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .orange-text {
@@ -554,10 +546,10 @@ body {
 }
 
 .qupe-description {
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: var(--qupe-gray-600);
-  max-width: 42rem;
-  margin: 0 auto 40px;
+  max-width: 34rem;
+  margin: 0 auto 28px;
   line-height: 1.6;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -568,23 +560,18 @@ body {
 
 .micro-proof {
   display: inline-flex;
-  /* Changed to flex for better alignment */
   align-items: center;
-  padding: 8px 16px;
+  padding: 6px 14px;
   background: rgba(255, 255, 255, 0.03);
-  /* Subtle glass effect */
   border: 1px solid rgba(249, 165, 30, 0.858);
   border-radius: 100px;
-  /* Pill shape */
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--qupe-gray-400);
   font-weight: 500;
   letter-spacing: 0.03em;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
-  /* Blurs background for premium feel */
-
 }
 
 .micro-proof:hover {
@@ -612,13 +599,13 @@ body {
 
 .qupe-input {
   width: 100%;
-  max-width: 32rem;
-  padding: 16px 24px;
-  font-size: 1.125rem;
+  max-width: 26rem;
+  padding: 12px 18px;
+  font-size: 0.9375rem;
   border: 1.5px solid var(--qupe-gray-200);
   background: rgba(0, 0, 0, 0.6);
   color: white;
-  border-radius: 14px;
+  border-radius: 12px;
   outline: none;
   transition: all 0.3s;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -796,10 +783,10 @@ body {
 
 /* Results Section - StoryFlow Redesign */
 .results-container {
-  padding: 60px 0;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   opacity: 0;
   animation: fadeIn 0.8s forwards;
   max-width: 1000px;
