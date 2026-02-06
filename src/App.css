@@ -520,7 +520,9 @@ body {
 }
 
 .qupe-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px 12px;
   background: var(--qupe-orange-light);
   color: var(--qupe-orange);
@@ -530,6 +532,7 @@ body {
   text-transform: uppercase;
   border-radius: 9999px;
   margin-bottom: 20px;
+  line-height: 1;
 }
 
 .qupe-title {
