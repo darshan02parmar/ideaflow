@@ -1,8 +1,8 @@
 import React from "react";
 import { z } from "zod";
 
-export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting, isStatic = false }) {
-    if (!summary) {
+export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueTags, marketSignal, onRewrite, isRewriting, isStatic = false, isEditing = false, onUpdate }) {
+    if (!summary && !isEditing) {
         return (
             <div className="empty-state">
                 <p className="muted-text">Waiting for idea summary...</p>
@@ -10,7 +10,11 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
         );
     }
 
-    // Split summary into highlighted first line
+    const handleInputChange = (field, value) => {
+        onUpdate({ summary, aiInsight, targetUsers, valueTags, marketSignal, [field]: value });
+    };
+
+    // Split summary into highlighted first line for display only
     const sentences = summary.split(". ");
     const firstSentence = sentences[0] + (sentences.length > 1 ? "." : "");
     const rest = sentences.slice(1).join(". ");
@@ -20,10 +24,10 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
     const displayTags = valueTags && valueTags.length > 0 ? valueTags : defaultTags;
 
     return (
-        <div className="overview-container hero-result-content">
+        <div className={`overview-container hero-result-content ${isEditing ? 'editing-mode' : ''}`}>
             <div className="overview-header">
                 <span className="overview-label">PRODUCT SUMMARY</span>
-                {!isStatic && (
+                {!isStatic && !isEditing && (
                     <button
                         className="rewrite-btn"
                         onClick={onRewrite}
@@ -35,12 +39,32 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
                 )}
             </div>
 
-            <p className="overview-lead">{firstSentence}</p>
-            <p className="overview-text">{rest}</p>
+            {isEditing ? (
+                <div className="edit-fields-group">
+                    <textarea
+                        className="editable-textarea summary-edit"
+                        value={summary}
+                        onChange={(e) => handleInputChange('summary', e.target.value)}
+                        placeholder="Product Summary"
+                    />
+                </div>
+            ) : (
+                <>
+                    <p className="overview-lead">{firstSentence}</p>
+                    <p className="overview-text">{rest}</p>
+                </>
+            )}
 
-            {targetUsers && (
+            {(targetUsers || isEditing) && (
                 <div className="target-users-line">
-                    <span className="meta-label-small">Target users:</span> {targetUsers}
+                    <span className="meta-label-small">Target users:</span>
+                    {isEditing ? (
+                        <input
+                            className="editable-input"
+                            value={targetUsers}
+                            onChange={(e) => handleInputChange('targetUsers', e.target.value)}
+                        />
+                    ) : targetUsers}
                 </div>
             )}
 
@@ -50,17 +74,32 @@ export default function IdeaOverviewUI({ summary, aiInsight, targetUsers, valueT
                 ))}
             </div>
 
-            {aiInsight && (
+            {(aiInsight || isEditing) && (
                 <div className="ai-insight-box">
                     <span className="insight-label">AI Insight</span>
-                    <p className="ai-insight-text">{aiInsight}</p>
+                    {isEditing ? (
+                        <textarea
+                            className="editable-textarea insight-edit"
+                            value={aiInsight}
+                            onChange={(e) => handleInputChange('aiInsight', e.target.value)}
+                        />
+                    ) : (
+                        <p className="ai-insight-text">{aiInsight}</p>
+                    )}
                 </div>
             )}
 
             <div className="overview-footer">
-                {marketSignal && (
+                {(marketSignal || isEditing) && (
                     <div className="market-signal-line">
-                        <span className="meta-label-small">Market signal:</span> {marketSignal}
+                        <span className="meta-label-small">Market signal:</span>
+                        {isEditing ? (
+                            <input
+                                className="editable-input"
+                                value={marketSignal}
+                                onChange={(e) => handleInputChange('marketSignal', e.target.value)}
+                            />
+                        ) : marketSignal}
                     </div>
                 )}
                 <div className="overview-meta">

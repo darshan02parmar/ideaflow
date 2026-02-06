@@ -2038,7 +2038,7 @@ body {
 }
 
 .pdf-mode .results-container {
-  background: #ffffff !important;
+  background: #cababa !important;
 }
 
 .pdf-mode .card,
@@ -2049,7 +2049,7 @@ body {
 .pdf-mode .timeline-content,
 .pdf-mode .roadmap-phase,
 .pdf-mode .ai-insight-box {
-  background: #ffffff !important;
+  background: #a99375 !important;
   border-color: #cccccc !important;
   box-shadow: none !important;
   color: #000000 !important;
@@ -2229,6 +2229,15 @@ body {
 .saved-card .example-title {
   margin: 12px 0 8px 0;
   font-size: 1.4rem;
+  /* Line Clamping */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3.4rem;
+  /* Ensures consistent vertical rhythm */
 }
 
 .saved-date {
@@ -2508,4 +2517,308 @@ body {
   .footer-links {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* Inline Editing Styles */
+.edit-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.edit-mode-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.edit-query-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.edit-action-btn.save {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.edit-action-btn.save:hover {
+  background: #22c55e;
+  color: white;
+}
+
+.edit-action-btn.cancel {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.edit-action-btn.cancel:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.edit-title-trigger {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.2s ease;
+}
+
+.edit-title-trigger:hover {
+  background: rgba(255, 122, 0, 0.15);
+  color: var(--qupe-orange);
+  border-color: rgba(255, 122, 0, 0.3);
+  transform: scale(1.1);
+}
+
+/* Global Blueprint Editing Styles */
+.editing-mode {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.editable-textarea,
+.editable-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.editable-textarea:focus,
+.editable-input:focus {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--qupe-orange);
+  box-shadow: 0 0 15px rgba(255, 122, 0, 0.1);
+}
+
+.editable-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.summary-edit {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.insight-edit {
+  min-height: 80px;
+}
+
+.point-edit {
+  min-height: 60px;
+  font-size: 0.95rem;
+}
+
+.step-edit {
+  min-height: 70px;
+  font-size: 0.95rem;
+}
+
+.edit-fields-group {
+  margin-bottom: 24px;
+}
+
+.add-point-btn,
+.add-step-btn,
+.add-tech-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 122, 0, 0.1);
+  color: var(--qupe-orange);
+  border: 1px dashed rgba(255, 122, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+  width: fit-content;
+}
+
+.add-point-btn:hover,
+.add-step-btn:hover,
+.add-tech-btn:hover {
+  background: rgba(255, 122, 0, 0.2);
+  border-style: solid;
+  transform: translateY(-2px);
+}
+
+.remove-point-btn,
+.remove-step-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.remove-point-btn:hover,
+.remove-step-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.editable-step-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.editable-badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-edit-input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  width: 100px;
+  outline: none;
+}
+
+.remove-badge-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.remove-badge-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn.active {
+  box-shadow: 0 0 15px rgba(255, 122, 0, 0.25);
+}
+
+.remove-phase-btn-small {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.remove-phase-btn-small:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.add-roadmap-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 122, 0, 0.1);
+  color: var(--qupe-orange);
+  border: 1px dashed rgba(255, 122, 0, 0.4);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 32px auto 0;
+  transition: all 0.2s ease;
+}
+
+.add-roadmap-btn:hover {
+  background: rgba(255, 122, 0, 0.2);
+  border-style: solid;
+  transform: scale(1.05);
+}
+
+.remove-stream-btn {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.remove-stream-btn:hover {
+  background: #ef4444;
+  color: white;
 }

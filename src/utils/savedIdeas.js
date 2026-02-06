@@ -28,3 +28,23 @@ export function isIdeaSaved(id) {
 export function getSavedIdeaById(id) {
     return getSavedIdeas().find(i => i.id === id);
 }
+
+export function updateIdeaTitle(id, newTitle) {
+    const ideas = getSavedIdeas().map(idea => {
+        if (idea.id === id) {
+            return { ...idea, query: newTitle };
+        }
+        return idea;
+    });
+    localStorage.setItem(KEY, JSON.stringify(ideas));
+}
+
+export function updateIdeaData(id, newData) {
+    const ideas = getSavedIdeas().map(idea => {
+        if (idea.id === id) {
+            return { ...idea, data: newData };
+        }
+        return idea;
+    });
+    localStorage.setItem(KEY, JSON.stringify(ideas));
+}

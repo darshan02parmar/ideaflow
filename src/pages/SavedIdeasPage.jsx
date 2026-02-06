@@ -19,6 +19,11 @@ export default function SavedIdeasPage() {
         }
     };
 
+    const truncateTitle = (text, limit = 70) => {
+        if (!text) return "";
+        return text.length > limit ? text.substring(0, limit) + "..." : text;
+    };
+
     return (
         <div className="page-hero-wrapper">
             <section className="landing-section-saved">
@@ -38,7 +43,9 @@ export default function SavedIdeasPage() {
                                         <span className="qupe-badge" style={{ marginBottom: 0 }}>BLUEPRINT</span>
                                         <button className="delete-btn" onClick={(e) => handleDelete(e, idea.id)} title="Delete Blueprint">🗑️</button>
                                     </div>
-                                    <h3 className="example-title">{idea.query}</h3>
+                                    <h3 className="example-title" title={idea.query}>
+                                        {truncateTitle(idea.query)}
+                                    </h3>
                                     <p className="saved-date">Saved on {new Date(idea.savedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
                                     <div className="card-footer-mini">
                                         <span className="open-link">Open Blueprint →</span>

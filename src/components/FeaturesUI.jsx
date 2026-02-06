@@ -20,7 +20,7 @@ function getFeatureCategory(index, total) {
     return "INTEGRATIONS";
 }
 
-export default function FeaturesUI({ features, aiInsight, showToast }) {
+export default function FeaturesUI({ features, aiInsight, showToast, isEditing = false, onUpdate }) {
     if (!features || features.length === 0) {
         return (
             <div className="empty-state">
@@ -29,7 +29,13 @@ export default function FeaturesUI({ features, aiInsight, showToast }) {
         );
     }
 
-    // Group features into categories
+    const handleFeatureChange = (index, value) => {
+        const newFeatures = [...features];
+        newFeatures[index] = value;
+        onUpdate({ features: newFeatures });
+    };
+
+    // Group features into categories for display
     const categorizedFeatures = {
         "CORE FEATURES": [],
         "ENGAGEMENT": [],
@@ -38,7 +44,7 @@ export default function FeaturesUI({ features, aiInsight, showToast }) {
 
     features.forEach((feature, i) => {
         const category = getFeatureCategory(i, features.length);
-        categorizedFeatures[category].push(feature);
+        categorizedFeatures[category].push({ text: feature, index: i });
     });
 
     const handleCopy = () => {
@@ -50,12 +56,12 @@ export default function FeaturesUI({ features, aiInsight, showToast }) {
     };
 
     return (
-        <div className="features-wrapper">
+        <div className={`features-wrapper ${isEditing ? 'editing-mode' : ''}`}>
             <div className="features-header-row">
                 <p className="features-ai-summary">
                     <span className="ai-label">AI Summary:</span> This product focuses on personalization, habit formation, and seamless integration.
                 </p>
-                <button className="copy-features-btn" onClick={handleCopy}>Copy list</button>
+                {!isEditing && <button className="copy-features-btn" onClick={handleCopy}>Copy list</button>}
             </div>
 
             <div className="features-layout">
@@ -64,15 +70,21 @@ export default function FeaturesUI({ features, aiInsight, showToast }) {
                         <div key={category} className="feature-category-group">
                             <h4 className="category-title">{category}</h4>
                             <div className="features-grid">
-                                {items.map((feature, i) => (
-                                    <div key={i} className="feature-item" title={`Why this matters: Improves value through ${feature.toLowerCase()}.`}>
+                                {items.map(({ text, index }) => (
+                                    <div key={index} className="feature-item">
                                         <span className="feature-icon">
-                                            {getFeatureIcon(feature)}
+                                            {getFeatureIcon(text)}
                                         </span>
                                         <div className="feature-content">
-                                            <span className="feature-text">{feature}</span>
-                                            {i % 2 === 0 && <span className="feature-tag">MVP</span>}
-                                            {i % 3 === 0 && i % 2 !== 0 && <span className="feature-tag core">Core</span>}
+                                            {isEditing ? (
+                                                <input
+                                                    className="editable-input feature-edit"
+                                                    value={text}
+                                                    onChange={(e) => handleFeatureChange(index, e.target.value)}
+                                                />
+                                            ) : (
+                                                <span className="feature-text">{text}</span>
+                                            )}
                                         </div>
                                     </div>
                                 ))}

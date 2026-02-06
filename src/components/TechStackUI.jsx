@@ -1,7 +1,22 @@
 import React from "react";
 import { z } from "zod";
+import { Plus, X } from "lucide-react";
 
-export default function TechStackUI({ stack, isRegenerating }) {
+export default function TechStackUI({ stack, isRegenerating, isEditing = false, onUpdate }) {
+    const handleTechChange = (index, value) => {
+        const newStack = [...stack];
+        newStack[index] = value;
+        onUpdate({ stack: newStack });
+    };
+
+    const handleAddTech = () => {
+        onUpdate({ stack: [...(stack || []), "New Tech"] });
+    };
+
+    const handleRemoveTech = (index) => {
+        onUpdate({ stack: stack.filter((_, i) => i !== index) });
+    };
+
     if (isRegenerating) {
         return (
             <div className="section-loading">
@@ -11,7 +26,7 @@ export default function TechStackUI({ stack, isRegenerating }) {
         );
     }
 
-    if (!stack || stack.length === 0) {
+    if ((!stack || stack.length === 0) && !isEditing) {
         return (
             <div className="empty-state">
                 <p className="muted-text">No tech stack suggested yet.</p>
@@ -19,18 +34,38 @@ export default function TechStackUI({ stack, isRegenerating }) {
         );
     }
 
+    const currentStack = stack || [];
+
     return (
-        <div className="tech-stack-container">
+        <div className={`tech-stack-container ${isEditing ? 'editing-mode' : ''}`}>
             <div className="tech-badge-container">
-                {stack.map((item, i) => (
+                {currentStack.map((item, i) => (
                     <span key={i} className="tech-badge">
-                        {item}
+                        {isEditing ? (
+                            <div className="editable-badge-wrapper">
+                                <input
+                                    className="badge-edit-input"
+                                    value={item}
+                                    onChange={(e) => handleTechChange(i, e.target.value)}
+                                />
+                                <button className="remove-badge-btn" onClick={() => handleRemoveTech(i)}>
+                                    <X size={10} />
+                                </button>
+                            </div>
+                        ) : item}
                     </span>
                 ))}
+                {isEditing && (
+                    <button className="add-tech-btn" onClick={handleAddTech}>
+                        <Plus size={14} /> Add Tech
+                    </button>
+                )}
             </div>
-            <p className="tech-hint">
-                These technologies are recommended for building the MVP.
-            </p>
+            {!isEditing && (
+                <p className="tech-hint">
+                    These technologies are recommended for building the MVP.
+                </p>
+            )}
         </div>
     );
 }
