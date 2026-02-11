@@ -1,10 +1,29 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const SLIDES = [
+  { img: "/examples/brief.png", label: "Product Brief", position: "label-pos-1" },
+  { img: "/examples/flow.PNG", label: "User Journey", position: "label-pos-2" },
+  { img: "/examples/build.png", label: "Tech Stack", position: "label-pos-3" },
+  { img: "/examples/monetization.png", label: "Monetization", position: "label-pos-4" },
+  { img: "/examples/capabilities.png", label: "Core Capabilities", position: "label-pos-1" }
+];
 
 export default function ExamplesPage({ onSubmit, isNavigating }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const handleExampleClick = (query) => {
     if (!isNavigating) {
       onSubmit(query);
     }
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev - 1));
   };
 
   return (
@@ -64,6 +83,64 @@ export default function ExamplesPage({ onSubmit, isNavigating }) {
                 title="Smart Parking System"
                 onClick={() => handleExampleClick("Design a smart parking management system")}
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BLUEPRINT PREVIEW SECTION */}
+      <section className="blueprint-preview-section">
+        <div className="landing-container">
+          <h2 className="landing-section-title">
+            See what <span className="orange-text">IdeaFlow</span> generates
+          </h2>
+          <p className="landing-subtitle">
+            A complete product blueprint — structured, actionable, and ready to build.
+            <br />
+            <span style={{ fontSize: '0.9em', opacity: 0.8 }}>(Swipe to explore sections)</span>
+          </p>
+
+          <div className="browser-mockup-wrapper">
+            <div className="browser-mockup">
+              {/* Navigation Controls */}
+              <div className="carousel-nav-btn nav-prev" onClick={prevSlide}>
+                <ChevronLeft size={24} />
+              </div>
+              <div className="carousel-nav-btn nav-next" onClick={nextSlide}>
+                <ChevronRight size={24} />
+              </div>
+
+              <div className="browser-header">
+                <div className="browser-dot red"></div>
+                <div className="browser-dot yellow"></div>
+                <div className="browser-dot green"></div>
+                <div className="browser-address-bar">ideaflow.app</div>
+              </div>
+
+              <div className="browser-content">
+                <img
+                  src={SLIDES[currentSlide].img}
+                  alt={SLIDES[currentSlide].label}
+                  className="blueprint-img"
+                  key={currentSlide} // Force re-render for animation
+                />
+
+                {/* Dynamic Floating Label
+                <div className={`floating-label ${SLIDES[currentSlide].position}`}>
+                  {SLIDES[currentSlide].label}
+                </div> */}
+
+                {/* Dots Indicator */}
+                <div className="carousel-dots">
+                  {SLIDES.map((_, index) => (
+                    <div
+                      key={index}
+                      className={`dot ${index === currentSlide ? 'active' : ''}`}
+                      onClick={() => setCurrentSlide(index)}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

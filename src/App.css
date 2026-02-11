@@ -3233,3 +3233,237 @@ body {
   font-size: 16px;
   color: #666;
 }
+
+/* ========================================= */
+/* Blueprint Preview Section (Examples Page) */
+/* ========================================= */
+
+.blueprint-preview-section {
+  padding: 80px 0 120px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.browser-mockup-wrapper {
+  margin-top: 60px;
+  padding: 0 20px;
+  perspective: 1000px;
+}
+
+.browser-mockup {
+  background: #000;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  max-width: 800px;
+  /* Reduced from 1000px */
+  margin: 0 auto;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.browser-mockup:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 35px 60px -15px rgba(255, 107, 0, 0.15), 0 0 0 1px rgba(255, 122, 0, 0.3);
+}
+
+.browser-header {
+  background: #1a1a1a;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.browser-dot.red {
+  background: #ff5f56;
+}
+
+.browser-dot.yellow {
+  background: #ffbd2e;
+}
+
+.browser-dot.green {
+  background: #27c93f;
+}
+
+.browser-address-bar {
+  background: #2a2a2a;
+  color: #888;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.browser-content {
+  position: relative;
+  line-height: 0;
+  min-height: 400px;
+  /* Ensure height for transitions */
+}
+
+.blueprint-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Floating Labels */
+.floating-label {
+  position: absolute;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: float 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.floating-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--qupe-orange);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--qupe-orange);
+}
+
+/* Label Positioning classes */
+.label-pos-1 {
+  top: 15%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.label-pos-2 {
+  top: 40%;
+  right: 5%;
+  animation-delay: 1.5s;
+}
+
+.label-pos-3 {
+  bottom: 25%;
+  left: 8%;
+  animation-delay: 0.5s;
+}
+
+.label-pos-4 {
+  bottom: 10%;
+  right: 12%;
+  animation-delay: 2s;
+}
+
+/* Carousel Controls */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  scale: 1.1;
+}
+
+.nav-prev {
+  left: 20px;
+}
+
+.nav-next {
+  right: 20px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #ff7a00;
+  transform: scale(1.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .browser-mockup {
+    max-width: 95%;
+  }
+
+  .floating-label {
+    display: none;
+    /* Hide labels on mobile to clear view */
+  }
+
+  .carousel-nav-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
