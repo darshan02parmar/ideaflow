@@ -2037,16 +2037,39 @@ body {
   color: #eafff2;
 }
 
-/* PDF Export Visibility Fix */
+/* ===== PDF Mode (Clean & High Contrast) ===== */
+
 .pdf-mode {
   background: #ffffff !important;
   color: #000000 !important;
 }
 
-.pdf-mode .results-container {
-  background: #cababa !important;
+/* PDF Header */
+.pdf-header {
+  margin: 0 0 18px;
+  text-align: center;
 }
 
+.pdf-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111111;
+}
+
+.pdf-subtitle {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Main container */
+.pdf-mode .results-container {
+  background: #ffffff !important;
+}
+
+/* Cards */
 .pdf-mode .card,
 .pdf-mode .bento-card,
 .pdf-mode .pain-point-item,
@@ -2055,55 +2078,53 @@ body {
 .pdf-mode .timeline-content,
 .pdf-mode .roadmap-phase,
 .pdf-mode .ai-insight-box {
-  background: #a99375 !important;
-  border-color: #cccccc !important;
+  background: #f9fafb !important;
+  /* light grey */
+  border: 1px solid #e5e7eb !important;
   box-shadow: none !important;
   color: #000000 !important;
 }
 
-.pdf-mode .overview-lead,
-.pdf-mode .overview-text,
-.pdf-mode .target-users-line,
-.pdf-mode .market-signal-line,
-.pdf-mode .ai-insight-text,
-.pdf-mode .feature-text,
-.pdf-mode .pain-point-text,
-.pdf-mode .monetization-text,
-.pdf-mode .timeline-text,
-.pdf-mode .phase-title,
-.pdf-mode .tech-hint,
-.pdf-mode .bento-card-title,
-.pdf-mode .bento-card-description {
+/* Text */
+.pdf-mode p,
+.pdf-mode span,
+.pdf-mode div,
+.pdf-mode li {
+  color: #111111 !important;
+}
+
+/* Headings */
+.pdf-mode h1,
+.pdf-mode h2,
+.pdf-mode h3,
+.pdf-mode h4 {
   color: #000000 !important;
 }
 
-/* Ensure labels have high contrast */
+/* Accent labels (IdeaFlow orange) */
 .pdf-mode .overview-label,
 .pdf-mode .insight-label,
 .pdf-mode .meta-label-small,
 .pdf-mode .ai-label,
 .pdf-mode .category-title,
-.pdf-mode .pain-point-index,
-.pdf-mode .monetization-badge,
 .pdf-mode .phase-badge {
-  color: #e65100 !important;
-  /* Slightly darker orange for contrast */
-  font-weight: 1000 !important;
+  color: #ff7a00 !important;
+  font-weight: 700 !important;
 }
 
+/* Chips */
 .pdf-mode .value-chip {
   background: #f3f4f6 !important;
-  border-color: #d1d5db !important;
-  color: #374151 !important;
+  border: 1px solid #d1d5db !important;
+  color: #111111 !important;
 }
 
-.pdf-mode .story-section-header {
-  color: #000000 !important;
+/* Remove glow / effects */
+.pdf-mode * {
+  text-shadow: none !important;
+  filter: none !important;
 }
 
-.pdf-mode .timeline-marker {
-  box-shadow: none !important;
-}
 
 /* Section Regeneration and Loading */
 .regen-btn {
@@ -2882,8 +2903,333 @@ body {
   }
 }
 
+.add-point-btn,
+.add-step-btn,
+.add-tech-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 122, 0, 0.1);
+  color: var(--qupe-orange);
+  border: 1px dashed rgba(255, 122, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+  width: fit-content;
+}
+
+.add-point-btn:hover,
+.add-step-btn:hover,
+.add-tech-btn:hover {
+  background: rgba(255, 122, 0, 0.2);
+  border-style: solid;
+  transform: translateY(-2px);
+}
+
+.remove-point-btn,
+.remove-step-btn {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.remove-point-btn:hover,
+.remove-step-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.editable-step-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.editable-badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-edit-input {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  width: 100px;
+  outline: none;
+}
+
+.remove-badge-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.remove-badge-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.action-btn.active {
+  box-shadow: 0 0 15px rgba(255, 122, 0, 0.25);
+}
+
+.remove-phase-btn-small {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.remove-phase-btn-small:hover {
+  background: #ef4444;
+  color: white;
+}
+
+.add-roadmap-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 122, 0, 0.1);
+  color: var(--qupe-orange);
+  border: 1px dashed rgba(255, 122, 0, 0.4);
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 32px auto 0;
+  transition: all 0.2s ease;
+}
+
+.add-roadmap-btn:hover {
+  background: rgba(255, 122, 0, 0.2);
+  border-style: solid;
+  transform: scale(1.05);
+}
+
+.remove-stream-btn {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.remove-stream-btn:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Improve with AI Button Styles */
+.improve-ai-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--qupe-orange) 0%, #ffb800 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(255, 122, 0, 0.3);
+  width: fit-content;
+}
+
+.improve-ai-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4);
+}
+
+.improve-ai-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.improve-ai-btn.small {
+  padding: 6px 12px;
+  font-size: 0.75rem;
+}
+
+.improve-ai-btn.loading {
+  background: #2a2a2a;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: wait;
+  box-shadow: none;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .edit-actions-row {
   margin-bottom: 12px;
   display: flex;
   justify-content: flex-end;
+}
+
+/* ===== Force solid colors for PDF ===== */
+.pdf-mode,
+.pdf-mode * {
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  text-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Page Background */
+.pdf-mode {
+  background: #ffffff !important;
+  color: #000000 !important;
+  padding: 20px !important;
+}
+
+/* Container & Layout */
+/* Container & Layout */
+.pdf-mode .results-container,
+.pdf-mode .results-page-wrapper {
+  background: #ffffff !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  min-height: auto !important;
+  /* Prevent full height from forcing page break */
+}
+
+/* Hide UI elements that shouldn't be in PDF */
+.pdf-mode .reset-button-container,
+.pdf-mode .action-layer,
+.pdf-mode .edit-title-trigger,
+.pdf-mode .rewrite-trigger,
+.pdf-mode .regenerate-trigger,
+.pdf-mode .toast,
+.pdf-mode .background-overlay,
+.pdf-mode .hyperspeed-canvas,
+.pdf-mode .micro-proof {
+  display: none !important;
+}
+
+/* Cards & Components */
+.pdf-mode .card,
+.pdf-mode .bento-card,
+.pdf-mode .ai-insight-box,
+.pdf-mode .feature-item,
+.pdf-mode .pain-point-item,
+.pdf-mode .timeline-content,
+.pdf-mode .roadmap-phase,
+.pdf-mode .step-card,
+.pdf-mode .example-landing-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: none !important;
+  margin-bottom: 15px !important;
+  break-inside: avoid !important;
+}
+
+/* Text - force dark high contrast */
+.pdf-mode p,
+.pdf-mode span,
+.pdf-mode div,
+.pdf-mode li,
+.pdf-mode label {
+  color: #111111 !important;
+  opacity: 1 !important;
+}
+
+.pdf-mode h1,
+.pdf-mode h2,
+.pdf-mode h3,
+.pdf-mode h4,
+.pdf-mode .landing-section-title {
+  color: #000000 !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Accent Labels - Force Orange but High Contrast */
+.pdf-mode .overview-label,
+.pdf-mode .category-title,
+.pdf-mode .ai-label,
+.pdf-mode .orange-text,
+.pdf-mode .qupe-badge {
+  color: #ff7a00 !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* SVG and Icons */
+.pdf-mode svg {
+  fill: #000000 !important;
+}
+
+/* PDF Custom Header (added via JS) */
+.pdf-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ff7a00;
+  padding-bottom: 15px;
+}
+
+.pdf-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.pdf-subtitle {
+  font-size: 16px;
+  color: #666;
 }
