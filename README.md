@@ -4,7 +4,7 @@
 <div align="center">
   
 <p align="center">
-  <img src="/public/image.png" alt="IdeaFlow Banner" width="100%" />
+  <img src="/public/ideaflow.png" alt="IdeaFlow Banner" width="100%" />
 </p>
 
 **⭐Interface at the speed of thought.**
