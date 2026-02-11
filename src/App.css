@@ -613,6 +613,13 @@ body {
   transition: all 0.3s;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+
+  /* Textarea specifics */
+  font-family: inherit;
+  resize: none;
+  overflow: hidden;
+  height: 48px;
+  /* Initial height matching original input */
 }
 
 .qupe-input:focus {
@@ -1818,8 +1825,8 @@ body {
 }
 
 .monetization-header {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   gap: 8px;
 }
 

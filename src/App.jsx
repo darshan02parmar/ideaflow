@@ -23,6 +23,7 @@ export default function App() {
     if (!prompt.trim() || isNavigating) return;
 
     setIsNavigating(true);
+    setInput(prompt); // Sync input with the generated prompt (e.g., from examples)
     navigate(`/search/${encodeURIComponent(prompt)}`);
 
     // Safety timeout in case component doesn't unmount (e.g. navigation cancelled or rapid back)

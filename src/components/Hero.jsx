@@ -30,14 +30,22 @@ export default function Hero({ onSubmit, setInput, inputValue, isNavigating }) {
                     </p>
 
                     <div className="qupe-search-wrapper">
-                        <input
+                        <textarea
                             id="hero-search-input"
                             className="qupe-input"
                             placeholder={placeholder}
                             value={inputValue}
                             disabled={isNavigating}
+                            rows={1}
+                            onInput={(e) => {
+                                e.target.style.height = 'auto';
+                                e.target.style.height = `${e.target.scrollHeight}px`;
+                            }}
                             onKeyDown={(e) => {
-                                if (e.key === "Enter" && !isNavigating) onSubmit(e.target.value);
+                                if (e.key === "Enter" && !e.shiftKey) {
+                                    e.preventDefault();
+                                    if (!isNavigating) onSubmit(e.target.value);
+                                }
                             }}
                             onChange={(e) => setInput(e.target.value)}
                             onFocus={handleFocus}
