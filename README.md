@@ -1,12 +1,27 @@
+# 🌌IdeaFlow
+### Generative UI Product Architecture Tool powered by Tambo
+
+<div align="center">
+  
 <p align="center">
   <img src="/public/image.png" alt="IdeaFlow Banner" width="100%" />
 </p>
 
-<h1 align="center">🌌IdeaFlow</h1>
+**⭐Interface at the speed of thought.**
 
-<p align="center">
+
+[![Built with Tambo](https://img.shields.io/badge/Built%20with-Tambo%20AI-blue)](https://tambo.co)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-Fast%20Build-646CFF?logo=vite)](https://vitejs.dev/)
+
+
+*A hackathon project for "The UI Strikes Back" by WeMakeDevs*
+
+<!-- <p align="center">
   <b>⭐Interface at the speed of thought.</b>
-</p>
+</p> -->
+
+</div>
 
 IdeaFlow is an AI-powered product architecture tool that transforms erratic startup ideas into structured, professional product blueprints in seconds. It combines high-performance generative AI with a premium, SaaS-grade cinema dashboard experience.
 
@@ -79,6 +94,6 @@ Startups shouldn't feel like spreadsheets. They should feel like *software*. Ide
 
 *Crafted for founders who think at the speed of light.*
 
-### 👤 Author
+## 📧 Contact
 
-**Darshan Parmar** 
+**Darshan Parmar** - www.linkedin.com/in/parmar-darshan
