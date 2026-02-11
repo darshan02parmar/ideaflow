@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Hero({ onSubmit, setInput, inputValue }) {
+export default function Hero({ onSubmit, setInput, inputValue, isNavigating }) {
     const navigate = useNavigate();
     const [placeholder, setPlaceholder] = useState("Describe your app idea (e.g., 'An AI fitness coach')");
 
@@ -35,8 +35,9 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                             className="qupe-input"
                             placeholder={placeholder}
                             value={inputValue}
+                            disabled={isNavigating}
                             onKeyDown={(e) => {
-                                if (e.key === "Enter") onSubmit(e.target.value);
+                                if (e.key === "Enter" && !isNavigating) onSubmit(e.target.value);
                             }}
                             onChange={(e) => setInput(e.target.value)}
                             onFocus={handleFocus}
@@ -47,8 +48,13 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                     </div>
                     <br />
                     <div className="qupe-actions">
-                        <button className="btn-primary" onClick={() => onSubmit(inputValue)}>
-                            Generate My Plan
+                        <button
+                            className={`btn-primary ${isNavigating ? "disabled" : ""}`}
+                            onClick={() => !isNavigating && onSubmit(inputValue)}
+                            disabled={isNavigating}
+                            style={isNavigating ? { opacity: 0.7, cursor: 'not-allowed' } : {}}
+                        >
+                            {isNavigating ? "Generating..." : "Generate My Plan"}
                         </button>
                         <button className="btn-secondary" onClick={() => navigate("/examples")}>
                             Explore sample ideas
@@ -79,8 +85,8 @@ export default function Hero({ onSubmit, setInput, inputValue }) {
                             Explore sample ideas
                         </button>
                     </div> */}
-                </div>
-            </main>
-        </div>
+                </div >
+            </main >
+        </div >
     );
 }

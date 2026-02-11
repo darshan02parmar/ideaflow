@@ -16,11 +16,17 @@ import SavedIdeaDetail from "./pages/SavedIdeaDetail";
 
 export default function App() {
   const [inputValue, setInput] = useState("");
+  const [isNavigating, setIsNavigating] = useState(false);
   const navigate = useNavigate();
 
   const handleGenerate = (prompt) => {
-    if (!prompt.trim()) return;
+    if (!prompt.trim() || isNavigating) return;
+
+    setIsNavigating(true);
     navigate(`/search/${encodeURIComponent(prompt)}`);
+
+    // Safety timeout in case component doesn't unmount (e.g. navigation cancelled or rapid back)
+    setTimeout(() => setIsNavigating(false), 2000);
   };
 
   return (
@@ -34,7 +40,7 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={<HeroPage setInput={setInput} inputValue={inputValue} onSubmit={handleGenerate} />}
+            element={<HeroPage setInput={setInput} inputValue={inputValue} onSubmit={handleGenerate} isNavigating={isNavigating} />}
           />
           <Route
             path="/how-it-works"
@@ -42,7 +48,7 @@ export default function App() {
           />
           <Route
             path="/examples"
-            element={<ExamplesPage onSubmit={handleGenerate} />}
+            element={<ExamplesPage onSubmit={handleGenerate} isNavigating={isNavigating} />}
           />
           <Route
             path="/why-ideaflow"

@@ -1,6 +1,12 @@
 ﻿import React from "react";
 
-export default function ExamplesPage({ onSubmit }) {
+export default function ExamplesPage({ onSubmit, isNavigating }) {
+  const handleExampleClick = (query) => {
+    if (!isNavigating) {
+      onSubmit(query);
+    }
+  };
+
   return (
     <div className="page-hero-wrapper">
       <section id="examples" className="landing-section-example">
@@ -15,13 +21,13 @@ export default function ExamplesPage({ onSubmit }) {
           </p>
 
           {/* CORE EXAMPLES */}
-          <div className="examples-grid-landing">
+          <div className={`examples-grid-landing ${isNavigating ? "disabled-grid" : ""}`} style={isNavigating ? { opacity: 0.6, pointerEvents: 'none' } : {}}>
             <ExampleCard
               emoji="🍔"
               title="Food Delivery Platform"
               desc="End-to-end logistics, live order tracking, payments, and scalability."
               meta="Marketplace · Real-time · Payments"
-              onClick={() => onSubmit("Build a food delivery app")}
+              onClick={() => handleExampleClick("Build a food delivery app")}
             />
 
             <ExampleCard
@@ -29,7 +35,7 @@ export default function ExamplesPage({ onSubmit }) {
               title="Fitness Tracking App"
               desc="Personalized workouts, progress tracking, habits, and motivation loops."
               meta="Mobile · Health · Engagement"
-              onClick={() => onSubmit("Create a fitness tracking app")}
+              onClick={() => handleExampleClick("Create a fitness tracking app")}
             />
 
             <ExampleCard
@@ -37,26 +43,26 @@ export default function ExamplesPage({ onSubmit }) {
               title="AI Study Planner"
               desc="Smart scheduling, adaptive plans, reminders, and analytics."
               meta="AI · Productivity · Students"
-              onClick={() => onSubmit("Design an AI study planner")}
+              onClick={() => handleExampleClick("Design an AI study planner")}
             />
           </div>
 
           {/* ADVANCED EXAMPLES */}
-          <div className="examples-secondary">
+          <div className="examples-secondary" style={isNavigating ? { opacity: 0.6, pointerEvents: 'none' } : {}}>
             <h3 className="examples-subheading">More advanced ideas</h3>
 
             <div className="examples-grid-landing small">
               <ExampleMini
                 title="B2B SaaS Dashboard"
-                onClick={() => onSubmit("Build a B2B SaaS analytics dashboard")}
+                onClick={() => handleExampleClick("Build a B2B SaaS analytics dashboard")}
               />
               <ExampleMini
                 title="AI Resume Analyzer"
-                onClick={() => onSubmit("Create an AI-powered resume analysis tool")}
+                onClick={() => handleExampleClick("Create an AI-powered resume analysis tool")}
               />
               <ExampleMini
                 title="Smart Parking System"
-                onClick={() => onSubmit("Design a smart parking management system")}
+                onClick={() => handleExampleClick("Design a smart parking management system")}
               />
             </div>
           </div>
