@@ -3,10 +3,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDES = [
   { img: "/examples/brief.png", label: "Product Brief", position: "label-pos-1" },
+  { img: "/examples/capabilities.png", label: "Core Capabilities", position: "label-pos-1" },
   { img: "/examples/flow.PNG", label: "User Journey", position: "label-pos-2" },
   { img: "/examples/build.png", label: "Tech Stack", position: "label-pos-3" },
   { img: "/examples/monetization.png", label: "Monetization", position: "label-pos-4" },
-  { img: "/examples/capabilities.png", label: "Core Capabilities", position: "label-pos-1" }
 ];
 
 export default function ExamplesPage({ onSubmit, isNavigating }) {
