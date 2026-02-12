@@ -86,6 +86,73 @@ IdeaFlow is an AI-powered product architecture tool that transforms erratic star
     npm run dev
     ```
 
+## 🏗️ Architecture
+
+### High-Level Flow
+```
+┌──────────────┐
+│     User     │
+│   (Browser)  │
+└──────┬───────┘
+       │ Product idea (natural language)
+       ▼
+┌────────────────────┐
+│   React + Vite UI  │
+│  (Client Layer)    │
+└──────┬─────────────┘
+       │ sendThreadMessage()
+       ▼
+┌────────────────────┐
+│      Tambo AI      │
+│ Generative UI Engine│
+└──────┬─────────────┘
+       │ Structured component props
+       ▼
+┌──────────────────────────────┐
+│ Registered UI Components     │
+│ IdeaOverviewUI               │
+│ FeaturesUI                   │
+│ UserFlowUI                   │
+│ TechStackUI                  │
+│ RoadmapUI                    │
+│ BusinessModelUI              │
+└──────┬───────────────────────┘
+       │ Rendered dynamically
+       ▼
+┌────────────────────┐
+│   Structured UI     │
+│ Product Blueprint   │
+└────────────────────┘
+
+```
+
+## 🔄 Demo Flow
+
+1. **Input**: Type `Build a smart parking system`
+   - → Full product blueprint generated
+
+2. **Refine**: Click **Regenerate** on Tech Stack
+   - → Only that section updates
+
+3. **Save**: Click **Save Idea**
+   - → Stored locally
+
+4. **Edit**: Edit a section → Click **Improve with AI**
+   - → AI refines the content
+
+5. **Export**: Click **Export PDF**
+   - → Professional report generated
+
+## 🧠 Key Design Principle
+
+> **User Idea → AI → Structured Data → UI Components**
+
+- **AI** decides the content
+- **React** decides the experience
+
+This is the core of **Generative UI with Tambo**.
+
+
 ## 🌌 The "IdeaFlow" Philosophy
 
 Startups shouldn't feel like spreadsheets. They should feel like *software*. IdeaFlow is designed to make the messy planning phase feel as fast and exciting as the actual building process.
